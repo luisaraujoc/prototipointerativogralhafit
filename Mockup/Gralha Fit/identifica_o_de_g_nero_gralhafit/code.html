@@ -1,0 +1,130 @@
+<!DOCTYPE html><html lang="pt-BR"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>GralhaFit Onboarding - Gênero</title>
+<!-- Tailwind CSS CDN -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Google Fonts: Plus Jakarta Sans (Base for Elms Sans style) -->
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#034CD5',
+            surface: '#11181C', // Dark surface for dark mode
+            background: '#000000', // Pure black background
+            neutral: '#FCFCFC',
+          },
+          fontFamily: {
+            sans: ['Plus Jakarta Sans', 'sans-serif'],
+          },
+          borderRadius: {
+            'squircle': '24px', // Approximating the high corner smoothing
+          }
+        }
+      }
+    }
+  </script>
+<style data-purpose="custom-styling">
+    /* High corner smoothing effect simulation */
+    .squircle {
+      border-radius: 28px;
+      mask-image: paint(squircle); /* Future-proofing */
+    }
+    
+    /* Segmented progress bar spacing */
+    .progress-segment {
+      height: 4px;
+      flex: 1;
+      border-radius: 2px;
+    }
+
+    body {
+      background-color: #000000;
+      color: #FFFFFF;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Custom scroll behavior if needed */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+  </style>
+</head>
+<body class="font-sans min-h-screen flex flex-col px-6 pt-12 pb-8">
+<!-- BEGIN: Header -->
+<header class="flex items-center justify-between mb-8" data-purpose="navigation-header">
+<!-- Back Button -->
+<button aria-label="Voltar" class="w-12 h-12 flex items-center justify-center bg-primary rounded-full text-white">
+<svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="m15 18-6-6 6-6"></path></svg>
+</button>
+<!-- Step Indicator -->
+<span class="text-sm font-semibold tracking-wider text-white opacity-90">1 / 18</span>
+<!-- Empty div to balance the flex space -->
+<div class="w-12"></div>
+</header>
+<!-- END: Header -->
+<!-- BEGIN: Progress Bar -->
+<section class="flex gap-1 mb-12" data-purpose="onboarding-progress">
+<!-- Active Segment -->
+<div class="progress-segment bg-primary"></div>
+<!-- Inactive Segments -->
+<div class="progress-segment bg-surface"></div>
+<div class="progress-segment bg-surface"></div>
+<div class="progress-segment bg-surface"></div>
+<div class="progress-segment bg-surface"></div>
+<div class="progress-segment bg-surface"></div>
+<div class="progress-segment bg-surface"></div>
+<div class="progress-segment bg-surface"></div>
+<div class="progress-segment bg-surface"></div>
+<div class="progress-segment bg-surface"></div>
+<div class="progress-segment bg-surface"></div>
+<div class="progress-segment bg-surface"></div>
+<div class="progress-segment bg-surface"></div>
+<div class="progress-segment bg-surface"></div>
+<div class="progress-segment bg-surface"></div>
+<div class="progress-segment bg-surface"></div>
+<div class="progress-segment bg-surface"></div>
+<div class="progress-segment bg-surface"></div>
+</section>
+<!-- END: Progress Bar -->
+<!-- BEGIN: Main Content -->
+<main class="flex-grow">
+<h1 class="text-3xl font-bold mb-12 leading-tight text-white">
+      Qual gênero você se identifica?
+    </h1>
+<!-- Selection List -->
+<div class="flex flex-col gap-4" data-purpose="gender-selection-list">
+<!-- Option: Masculino -->
+<button class="w-full flex items-center justify-between p-7 bg-surface rounded-2xl hover:bg-opacity-80 transition-all text-left">
+<span class="text-xl font-medium text-white">Masculino</span>
+<svg class="text-white opacity-60" fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" viewBox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg"><path d="m9 18 6-6-6-6"></path></svg>
+</button>
+<!-- Option: Feminino -->
+<button class="w-full flex items-center justify-between p-7 bg-surface rounded-2xl hover:bg-opacity-80 transition-all text-left">
+<span class="text-xl font-medium text-white">Feminino</span>
+<svg class="text-white opacity-60" fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" viewBox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg"><path d="m9 18 6-6-6-6"></path></svg>
+</button>
+<!-- Option: Outro -->
+<button class="w-full flex items-center justify-between p-7 bg-surface rounded-2xl hover:bg-opacity-80 transition-all text-left">
+<span class="text-xl font-medium text-white">Outro</span>
+<svg class="text-white opacity-60" fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" viewBox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg"><path d="m9 18 6-6-6-6"></path></svg>
+</button>
+</div>
+</main>
+<!-- END: Main Content -->
+<!-- BEGIN: Footer -->
+<footer class="mt-8 text-center" data-purpose="legal-footer">
+<p class="text-sm text-neutral/60 leading-relaxed max-w-xs mx-auto">
+      Ao continuar, você concorda com nossos 
+      <a class="text-white font-bold decoration-1" href="#">Termos</a> e 
+      <a class="text-white font-bold decoration-1" href="#">Política de Privacidade</a>
+</p>
+<!-- Home Indicator Spacer (iOS Style) -->
+<div class="h-4 w-full"></div>
+</footer>
+<!-- END: Footer -->
+</body></html>

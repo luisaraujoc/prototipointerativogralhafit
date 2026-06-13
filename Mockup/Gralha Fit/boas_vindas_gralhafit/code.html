@@ -1,0 +1,410 @@
+<!DOCTYPE html><html lang="pt-BR"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>GralhaFit - Onboarding</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "surface-bright": "#f9f9f9",
+                      "on-secondary-fixed": "#161d20",
+                      "primary": "#0037a2",
+                      "on-secondary-fixed-variant": "#41484b",
+                      "on-error-container": "#93000a",
+                      "on-primary-fixed-variant": "#003cad",
+                      "surface": "#F1F1F1",
+                      "outline-variant": "#c3c5d7",
+                      "surface-tint": "#1452da",
+                      "surface-container": "#eeeeee",
+                      "on-secondary-container": "#5e6569",
+                      "neutral": "#FCFCFC",
+                      "secondary-fixed-dim": "#c0c8cb",
+                      "primary-fixed": "#dce1ff",
+                      "tertiary-container": "#caa800",
+                      "on-background": "#1a1c1c",
+                      "surface-dim": "#dadada",
+                      "error-container": "#ffdad6",
+                      "tertiary-fixed": "#ffe174",
+                      "on-tertiary-container": "#4c3e00",
+                      "outline": "#737686",
+                      "surface-container-lowest": "#ffffff",
+                      "secondary-container": "#dce4e7",
+                      "on-surface-variant": "#434655",
+                      "border": "#E4E4E4",
+                      "on-surface": "#1a1c1c",
+                      "surface-container-highest": "#e2e2e2",
+                      "on-tertiary-fixed": "#221b00",
+                      "surface-container-low": "#f3f3f3",
+                      "on-secondary": "#ffffff",
+                      "on-primary-fixed": "#00164e",
+                      "primary-fixed-dim": "#b5c4ff",
+                      "secondary-fixed": "#dce4e7",
+                      "on-error": "#ffffff",
+                      "primary-container": "#034cd5",
+                      "inverse-on-surface": "#f0f1f1",
+                      "on-tertiary": "#000713",
+                      "surface-variant": "#e2e2e2",
+                      "inverse-surface": "#2f3131",
+                      "secondary": "#585f63",
+                      "tertiary": "#DFBA00",
+                      "error": "#ba1a1a",
+                      "on-primary-container": "#c3cfff",
+                      "background": "#f9f9f9",
+                      "tertiary-fixed-dim": "#e9c316",
+                      "surface-container-high": "#e8e8e8",
+                      "on-tertiary-fixed-variant": "#554500",
+                      "on-primary": "#ffffff",
+                      "inverse-primary": "#b5c4ff"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "xl": "32px",
+                      "lg": "24px",
+                      "md": "16px",
+                      "sm": "8px"
+              },
+              "fontFamily": {
+                      "body-sm": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "displayMedium": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "display-sm": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "display-md": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "label-lg": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "headlineMedium": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "bodyMedium": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "titleSmall": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "titleLarge": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "headlineLarge": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "title-md": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "title-sm": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "headline-lg": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "headlineSmall": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "displaySmall": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "displayLarge": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "body-lg": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "labelSmall": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "headline-md": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "bodySmall": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "bodyLarge": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "display-lg": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "titleMedium": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "body-md": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "title-lg": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "headline-sm": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "label-md": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "labelMedium": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "labelLarge": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "label-sm": [
+                              "Plus Jakarta Sans"
+                      ]
+              },
+              "fontSize": {
+                      "body-sm": [
+                              "0.75rem",
+                              {
+                                      "lineHeight": "1.5",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "displayMedium": [
+                              "2.8rem",
+                              {
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "display-sm": [
+                              "2.25rem",
+                              {
+                                      "lineHeight": "1.2",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "display-md": [
+                              "2.8rem",
+                              {
+                                      "lineHeight": "1.2",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "label-lg": [
+                              "0.875rem",
+                              {
+                                      "lineHeight": "1",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headlineMedium": [
+                              "1.75rem",
+                              {
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "bodyMedium": [
+                              "0.875rem",
+                              {
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "titleSmall": [
+                              "0.875rem",
+                              {
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "titleLarge": [
+                              "1.375rem",
+                              {
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headlineLarge": [
+                              "2rem",
+                              {
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "title-md": [
+                              "1rem",
+                              {
+                                      "lineHeight": "1.4",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "title-sm": [
+                              "0.875rem",
+                              {
+                                      "lineHeight": "1.4",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-lg": [
+                              "2rem",
+                              {
+                                      "lineHeight": "1.3",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headlineSmall": [
+                              "1.5rem",
+                              {
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "displaySmall": [
+                              "2.25rem",
+                              {
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "displayLarge": [
+                              "3.5rem",
+                              {
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "body-lg": [
+                              "1rem",
+                              {
+                                      "lineHeight": "1.5",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "labelSmall": [
+                              "0.6875rem",
+                              {
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "headline-md": [
+                              "1.75rem",
+                              {
+                                      "lineHeight": "1.3",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "bodySmall": [
+                              "0.75rem",
+                              {
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "bodyLarge": [
+                              "1rem",
+                              {
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "display-lg": [
+                              "3.5rem",
+                              {
+                                      "lineHeight": "1.2",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "titleMedium": [
+                              "1rem",
+                              {
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "body-md": [
+                              "0.875rem",
+                              {
+                                      "lineHeight": "1.5",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "title-lg": [
+                              "1.375rem",
+                              {
+                                      "lineHeight": "1.4",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-sm": [
+                              "1.5rem",
+                              {
+                                      "lineHeight": "1.3",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "label-md": [
+                              "0.75rem",
+                              {
+                                      "lineHeight": "1",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "labelMedium": [
+                              "0.75rem",
+                              {
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "labelLarge": [
+                              "0.875rem",
+                              {
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "label-sm": [
+                              "0.6875rem",
+                              {
+                                      "lineHeight": "1",
+                                      "fontWeight": "400"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+        .bg-gradient-overlay {
+            background: linear-gradient(to bottom, transparent 20%, rgba(0, 0, 0, 0.8) 60%, rgba(0, 0, 0, 1) 100%);
+        }
+    </style>
+</head>
+<body class="bg-black m-0 p-0 overflow-hidden h-screen w-screen flex flex-col justify-end relative">
+<!-- Full Bleed Background Image -->
+<div class="absolute inset-0 z-0 bg-cover bg-center" style="background-image: url('https://lh3.googleusercontent.com/aida/AP1WRLvtyPFBqm5aHOxiIL2I8pqfJKEUvJptyhFq-Tl3R6mlUf8LecIxNbXRfiPRzagzj7zPcdZfBPNKPYQqKgzRgkAuTAZHaiRL4-37wcGMTtSW0U4hVd-l0oFKU7u5k1QNx1JX-9n9BPeKOZLnbPIhEFqitX9Qt05awLgcGZzBl-7lsWK0JEaBHbEwTov9rmHeQdDZsqBFXHrSdp7hnEEB5Mam8D6E0Nvb3eMsS8HE_dAEsCzYofPquUH6Fa0P');"></div>
+<!-- Gradient Overlay -->
+<div class="absolute inset-0 z-10 bg-gradient-overlay"></div>
+<!-- Progress Line at Top (Below Safe Area assumption) -->
+<div class="absolute top-12 left-0 w-full z-20 px-md">
+<div class="w-full bg-white/20 h-1 rounded-full overflow-hidden">
+<div class="bg-primary h-full w-1/3 rounded-full"></div>
+</div>
+</div>
+<!-- Content Area (Bottom Third) -->
+<div class="relative z-20 w-full px-md pb-xl pt-lg flex flex-col justify-end min-h-[45vh]">
+<!-- Typography -->
+<div class="mb-lg text-white">
+<h1 class="font-headlineLarge text-headlineLarge font-bold text-white mb-sm leading-tight max-w-[90%]">
+                Treine com um plano para você.
+            </h1>
+<p class="font-bodyMedium text-bodyMedium text-gray-300 opacity-90 max-w-[85%] mt-sm">
+                Obtenha um plano personalizado para seu perfil, avaliando seus objetivos e metas.
+            </p>
+</div>
+<!-- Actions -->
+<div class="flex flex-col gap-md">
+<button class="w-full py-4 bg-primary text-white font-labelLarge text-labelLarge uppercase rounded-full flex items-center justify-center transition-transform active:scale-95 shadow-sm">
+                COMEÇAR
+            </button>
+<button class="w-full py-3 bg-transparent text-white font-labelSmall text-labelSmall uppercase tracking-wide rounded-full flex items-center justify-center transition-opacity hover:opacity-80 active:scale-95 border border-transparent">
+                EU JÁ TENHO UMA CONTA
+            </button>
+</div>
+</div>
+</body></html>

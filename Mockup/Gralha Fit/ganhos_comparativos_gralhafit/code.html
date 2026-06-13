@@ -1,0 +1,223 @@
+<!DOCTYPE html><html lang="en" style="width: 390px; height: 884px; overflow: hidden; position: relative;"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>GralhaFit - Comparação de Ganhos</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "secondary": "#585f63",
+                        "secondary-container": "#dce4e7",
+                        "surface-container-lowest": "#ffffff",
+                        "on-error": "#ffffff",
+                        "border": "#E4E4E4",
+                        "on-secondary-fixed-variant": "#41484b",
+                        "neutral": "#FCFCFC",
+                        "surface-bright": "#f9f9f9",
+                        "surface": "#F1F1F1",
+                        "inverse-surface": "#2f3131",
+                        "on-secondary": "#ffffff",
+                        "surface-container-highest": "#e2e2e2",
+                        "primary": "#0037a2",
+                        "background": "#000000",
+                        "on-tertiary-fixed-variant": "#554500",
+                        "inverse-on-surface": "#f0f1f1",
+                        "on-tertiary-container": "#4c3e00",
+                        "surface-tint": "#0d47ff",
+                        "surface-container": "#eeeeee",
+                        "primary-fixed-dim": "#b5c4ff",
+                        "primary-fixed": "#dce1ff",
+                        "on-primary": "#ffffff",
+                        "on-background": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "on-tertiary-fixed": "#221b00",
+                        "surface-dim": "#dadada",
+                        "on-tertiary": "#000713",
+                        "primary-container": "#034cd5",
+                        "on-primary-fixed-variant": "#003cad",
+                        "inverse-primary": "#b5c4ff",
+                        "on-secondary-fixed": "#161d20",
+                        "on-primary-fixed": "#00164e",
+                        "tertiary-fixed": "#ffe174",
+                        "secondary-fixed-dim": "#c0c8cb",
+                        "tertiary-fixed-dim": "#e9c316",
+                        "secondary-fixed": "#dce4e7",
+                        "surface-container-high": "#e8e8e8",
+                        "error": "#ba1a1a",
+                        "outline": "#737686",
+                        "surface-variant": "#2a2a2a",
+                        "surface-container-low": "#f3f3f3",
+                        "on-secondary-container": "#5e6569",
+                        "outline-variant": "#c3c5d7",
+                        "tertiary": "#DFBA00",
+                        "on-surface-variant": "#a0a0a0",
+                        "on-primary-container": "#c3cfff",
+                        "tertiary-container": "#caa800",
+                        "error-container": "#ffdad6",
+                        "on-surface": "#ffffff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px",
+                        "2xl": "1rem",
+                        "3xl": "1.5rem",
+                        "4xl": "2rem"
+                    },
+                    "spacing": {
+                        "xl": "32px",
+                        "md": "16px",
+                        "sm": "8px",
+                        "lg": "24px"
+                    },
+                    "fontFamily": {
+                        "display-lg": ["Plus Jakarta Sans"],
+                        "body-lg": ["Plus Jakarta Sans"],
+                        "title-sm": ["Plus Jakarta Sans"],
+                        "bodyLarge": ["Plus Jakarta Sans"],
+                        "titleLarge": ["Plus Jakarta Sans"],
+                        "headline-lg": ["Plus Jakarta Sans"],
+                        "titleSmall": ["Plus Jakarta Sans"],
+                        "bodyMedium": ["Plus Jakarta Sans"],
+                        "headline-sm": ["Plus Jakarta Sans"],
+                        "title-md": ["Plus Jakarta Sans"],
+                        "headlineMedium": ["Plus Jakarta Sans"],
+                        "labelSmall": ["Plus Jakarta Sans"],
+                        "title-lg": ["Plus Jakarta Sans"],
+                        "displayMedium": ["Plus Jakarta Sans"],
+                        "displayLarge": ["Plus Jakarta Sans"],
+                        "display-md": ["Plus Jakarta Sans"],
+                        "display-sm": ["Plus Jakarta Sans"],
+                        "displaySmall": ["Plus Jakarta Sans"],
+                        "labelMedium": ["Plus Jakarta Sans"],
+                        "label-sm": ["Plus Jakarta Sans"],
+                        "headline-md": ["Plus Jakarta Sans"],
+                        "body-md": ["Plus Jakarta Sans"],
+                        "headlineLarge": ["Plus Jakarta Sans"],
+                        "label-lg": ["Plus Jakarta Sans"],
+                        "labelLarge": ["Plus Jakarta Sans"],
+                        "headlineSmall": ["Plus Jakarta Sans"],
+                        "label-md": ["Plus Jakarta Sans"],
+                        "titleMedium": ["Plus Jakarta Sans"],
+                        "body-sm": ["Plus Jakarta Sans"],
+                        "bodySmall": ["Plus Jakarta Sans"]
+                    },
+                    "fontSize": {
+                        "display-lg": ["3.5rem", { "lineHeight": "1.2", "fontWeight": "400" }],
+                        "body-lg": ["1rem", { "lineHeight": "1.5", "fontWeight": "400" }],
+                        "title-sm": ["0.875rem", { "lineHeight": "1.4", "fontWeight": "400" }],
+                        "bodyLarge": ["1rem", { "fontWeight": "400" }],
+                        "titleLarge": ["1.375rem", { "fontWeight": "400" }],
+                        "headline-lg": ["2rem", { "lineHeight": "1.3", "fontWeight": "400" }],
+                        "titleSmall": ["0.875rem", { "fontWeight": "400" }],
+                        "bodyMedium": ["0.875rem", { "fontWeight": "400" }],
+                        "headline-sm": ["1.5rem", { "lineHeight": "1.3", "fontWeight": "400" }],
+                        "title-md": ["1rem", { "lineHeight": "1.4", "fontWeight": "400" }],
+                        "headlineMedium": ["1.75rem", { "fontWeight": "700" }],
+                        "labelSmall": ["0.6875rem", { "fontWeight": "600", "letterSpacing": "0.05em" }],
+                        "title-lg": ["1.375rem", { "lineHeight": "1.4", "fontWeight": "400" }],
+                        "displayMedium": ["2.8rem", { "fontWeight": "400" }],
+                        "displayLarge": ["3.5rem", { "fontWeight": "400" }],
+                        "display-md": ["2.8rem", { "lineHeight": "1.2", "fontWeight": "400" }],
+                        "display-sm": ["2.25rem", { "lineHeight": "1.2", "fontWeight": "400" }],
+                        "displaySmall": ["2.25rem", { "fontWeight": "400" }],
+                        "labelMedium": ["0.75rem", { "fontWeight": "600" }],
+                        "label-sm": ["0.6875rem", { "lineHeight": "1", "fontWeight": "500" }],
+                        "headline-md": ["1.75rem", { "lineHeight": "1.3", "fontWeight": "700" }],
+                        "body-md": ["0.875rem", { "lineHeight": "1.5", "fontWeight": "400" }],
+                        "headlineLarge": ["2rem", { "fontWeight": "700" }],
+                        "label-lg": ["0.875rem", { "lineHeight": "1", "fontWeight": "600" }],
+                        "labelLarge": ["0.875rem", { "fontWeight": "600" }],
+                        "headlineSmall": ["1.5rem", { "fontWeight": "700" }],
+                        "label-md": ["0.75rem", { "lineHeight": "1", "fontWeight": "600" }],
+                        "titleMedium": ["1rem", { "fontWeight": "600" }],
+                        "body-sm": ["0.75rem", { "lineHeight": "1.5", "fontWeight": "400" }],
+                        "bodySmall": ["0.75rem", { "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .bar-anim {
+            animation: growUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            transform-origin: bottom;
+            transform: scaleY(0);
+        }
+        @keyframes growUp {
+            to { transform: scaleY(1); }
+        }
+    </style>
+</head>
+<body class="bg-black min-h-screen flex flex-col font-bodyLarge text-white selection:bg-surface-tint selection:text-white">
+<header class="flex items-center px-md py-sm w-full bg-black relative justify-center h-[64px]">
+<button class="absolute left-md w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-variant transition-colors text-white hover:opacity-80 transition-opacity duration-200">
+<span class="material-symbols-outlined text-[24px]">arrow_back</span>
+</button>
+<span class="font-labelLarge text-labelLarge text-gray-400 tracking-widest">7 / 18</span>
+</header>
+<div class="w-full px-lg py-sm flex justify-center gap-1">
+<div class="h-1 flex-1 rounded-full bg-surface-tint"></div>
+<div class="h-1 flex-1 rounded-full bg-surface-tint"></div>
+<div class="h-1 flex-1 rounded-full bg-surface-tint"></div>
+<div class="h-1 flex-1 rounded-full bg-surface-tint"></div>
+<div class="h-1 flex-1 rounded-full bg-surface-tint"></div>
+<div class="h-1 flex-1 rounded-full bg-surface-tint"></div>
+<div class="h-1 flex-1 rounded-full bg-surface-tint"></div>
+<div class="h-1 flex-1 rounded-full bg-[#1e1e1e]"></div>
+<div class="h-1 flex-1 rounded-full bg-[#1e1e1e]"></div>
+<div class="h-1 flex-1 rounded-full bg-[#1e1e1e]"></div>
+<div class="h-1 flex-1 rounded-full bg-[#1e1e1e]"></div>
+<div class="h-1 flex-1 rounded-full bg-[#1e1e1e]"></div>
+<div class="h-1 flex-1 rounded-full bg-[#1e1e1e]"></div>
+<div class="h-1 flex-1 rounded-full bg-[#1e1e1e]"></div>
+<div class="h-1 flex-1 rounded-full bg-[#1e1e1e]"></div>
+<div class="h-1 flex-1 rounded-full bg-[#1e1e1e]"></div>
+<div class="h-1 flex-1 rounded-full bg-[#1e1e1e]"></div>
+<div class="h-1 flex-1 rounded-full bg-[#1e1e1e]"></div>
+</div>
+<main class="flex-1 flex flex-col items-center px-lg mt-xl pb-[140px] w-full max-w-md mx-auto">
+<h1 class="font-headlineMedium text-headlineMedium text-white text-center">Ganhe músculos de verdade.</h1>
+<p class="font-bodyMedium text-bodyMedium text-gray-400 text-center mt-sm max-w-[300px]">
+            Treinos personalizados e focados em hipertrofia para aumentar volume e definição mais rápido.
+        </p>
+<div class="flex items-end justify-center gap-md mt-12 w-full flex-1 min-h-[400px]">
+<div class="flex flex-col w-[45%] max-w-[160px] h-[220px] bg-surface-variant rounded-[32px] p-lg bar-anim justify-between" style="animation-delay: 0.1s;">
+<div class="flex flex-col items-center">
+<span class="font-labelSmall text-[10px] text-gray-400 uppercase tracking-widest text-center mb-md">SEM GRALHAFIT</span>
+<span class="font-headlineSmall text-xl text-white text-center font-bold leading-tight">Ganhos<br>limitados</span>
+</div>
+<div class="flex justify-center w-full">
+<span class="material-symbols-outlined text-[32px] text-gray-500 opacity-50" style="font-variation-settings: 'FILL' 1;">fitness_center</span>
+</div>
+</div>
+<div class="flex flex-col w-[50%] max-w-[180px] h-[400px] bg-surface-tint rounded-[32px] p-lg bar-anim justify-between relative overflow-hidden" style="animation-delay: 0.3s;">
+<div class="absolute inset-0 bg-white opacity-10 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-white via-transparent to-transparent"></div>
+<div class="flex flex-col items-center relative z-10">
+<span class="font-labelSmall text-[10px] text-white/80 uppercase tracking-widest text-center mb-md">COM GRALHAFIT</span>
+<div class="flex items-center gap-1 text-white font-titleLarge text-xl tracking-tight font-bold">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">fitness_center</span>
+                    GralhaFit
+                </div>
+</div>
+<div class="flex flex-col items-center relative z-10 mt-auto">
+<span class="font-headlineMedium text-2xl text-white text-center font-bold leading-tight drop-shadow-md">3x mais<br>músculos</span>
+</div>
+</div>
+</div>
+</main>
+<div class="fixed bottom-0 left-0 w-full bg-gradient-to-t from-black via-black to-transparent pt-xl pb-lg px-lg flex flex-col items-center justify-end z-50">
+<span class="font-labelSmall text-labelSmall text-white uppercase tracking-widest text-center mb-lg opacity-80">
+            CONSTRUA O SHAPE QUE VOCÊ SEMPRE QUIS.
+        </span>
+<button class="w-full max-w-md bg-surface-tint text-white rounded-2xl py-[18px] flex justify-center items-center font-labelLarge text-labelLarge shadow-lg shadow-surface-tint/20 hover:bg-blue-700 transition-all active:scale-95 duration-200">
+            PRÓXIMO
+        </button>
+</div>
+</body></html>

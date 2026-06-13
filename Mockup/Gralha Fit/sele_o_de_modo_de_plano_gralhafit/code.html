@@ -1,0 +1,546 @@
+<!DOCTYPE html><html lang="pt-BR"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>GralhaFit - Seleção de Modo</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        "colors": {
+                "secondary-container": "#dce4e7",
+                "surface-bright": "#f9f9f9",
+                "on-secondary-container": "#5e6569",
+                "primary-container": "#034cd5",
+                "surface-dim": "#dadada",
+                "surface-tint": "#1452da",
+                "tertiary-fixed": "#ffe174",
+                "neutral": "#FCFCFC",
+                "on-tertiary": "#ffffff",
+                "inverse-primary": "#b5c4ff",
+                "surface-container-high": "#e8e8e8",
+                "error-container": "#ffdad6",
+                "surface": "#F1F1F1",
+                "on-tertiary-fixed": "#221b00",
+                "on-error-container": "#93000a",
+                "on-error": "#ffffff",
+                "surface-container-highest": "#e2e2e2",
+                "outline": "#737686",
+                "tertiary-fixed-dim": "#e9c316",
+                "on-primary": "#ffffff",
+                "inverse-on-surface": "#f0f1f1",
+                "on-surface": "#1a1c1c",
+                "on-primary-fixed-variant": "#003cad",
+                "on-surface-variant": "#434655",
+                "inverse-surface": "#2f3131",
+                "surface-container-low": "#f3f3f3",
+                "secondary": "#585f63",
+                "primary": "#0037a2",
+                "on-secondary-fixed": "#161d20",
+                "secondary-fixed": "#dce4e7",
+                "error": "#ba1a1a",
+                "on-primary-fixed": "#00164e",
+                "on-primary-container": "#c3cfff",
+                "on-secondary": "#ffffff",
+                "outline-variant": "#c3c5d7",
+                "on-secondary-fixed-variant": "#41484b",
+                "tertiary-container": "#caa800",
+                "surface-variant": "#e2e2e2",
+                "on-tertiary-container": "#4c3e00",
+                "border": "#E4E4E4",
+                "secondary-fixed-dim": "#c0c8cb",
+                "primary-fixed": "#dce1ff",
+                "tertiary": "#DFBA00",
+                "on-tertiary-fixed-variant": "#554500",
+                "background": "#f9f9f9",
+                "primary-fixed-dim": "#b5c4ff",
+                "surface-container-lowest": "#ffffff",
+                "surface-container": "#eeeeee",
+                "on-background": "#1a1c1c"
+        },
+        "borderRadius": {
+                "DEFAULT": "0.25rem",
+                "lg": "0.5rem",
+                "xl": "0.75rem",
+                "full": "9999px"
+        },
+        "spacing": {
+                "md": "16px",
+                "sm": "8px",
+                "lg": "24px",
+                "xl": "32px"
+        },
+        "fontFamily": {
+                "display-md": [
+                        "Plus Jakarta Sans"
+                ],
+                "title-sm": [
+                        "Plus Jakarta Sans"
+                ],
+                "display-sm": [
+                        "Plus Jakarta Sans"
+                ],
+                "body-lg": [
+                        "Plus Jakarta Sans"
+                ],
+                "bodySmall": [
+                        "Elms Sans"
+                ],
+                "bodyMedium": [
+                        "Elms Sans"
+                ],
+                "headline-sm": [
+                        "Plus Jakarta Sans"
+                ],
+                "headline-md": [
+                        "Plus Jakarta Sans"
+                ],
+                "displaySmall": [
+                        "Elms Sans"
+                ],
+                "labelSmall": [
+                        "Elms Sans"
+                ],
+                "body-sm": [
+                        "Plus Jakarta Sans"
+                ],
+                "labelLarge": [
+                        "Elms Sans"
+                ],
+                "label-md": [
+                        "Plus Jakarta Sans"
+                ],
+                "headlineSmall": [
+                        "Elms Sans"
+                ],
+                "body-md": [
+                        "Plus Jakarta Sans"
+                ],
+                "headlineMedium": [
+                        "Elms Sans"
+                ],
+                "titleLarge": [
+                        "Elms Sans"
+                ],
+                "headlineLarge": [
+                        "Elms Sans"
+                ],
+                "labelMedium": [
+                        "Elms Sans"
+                ],
+                "display-lg": [
+                        "Plus Jakarta Sans"
+                ],
+                "headline-lg": [
+                        "Plus Jakarta Sans"
+                ],
+                "title-md": [
+                        "Plus Jakarta Sans"
+                ],
+                "title-lg": [
+                        "Plus Jakarta Sans"
+                ],
+                "displayMedium": [
+                        "Elms Sans"
+                ],
+                "titleMedium": [
+                        "Elms Sans"
+                ],
+                "label-lg": [
+                        "Plus Jakarta Sans"
+                ],
+                "displayLarge": [
+                        "Elms Sans"
+                ],
+                "titleSmall": [
+                        "Elms Sans"
+                ],
+                "bodyLarge": [
+                        "Elms Sans"
+                ],
+                "label-sm": [
+                        "Plus Jakarta Sans"
+                ]
+        },
+        "fontSize": {
+                "display-md": [
+                        "2.8rem",
+                        {
+                                "lineHeight": "1.2",
+                                "fontWeight": "400"
+                        }
+                ],
+                "title-sm": [
+                        "0.875rem",
+                        {
+                                "lineHeight": "1.4",
+                                "fontWeight": "400"
+                        }
+                ],
+                "display-sm": [
+                        "2.25rem",
+                        {
+                                "lineHeight": "1.2",
+                                "fontWeight": "400"
+                        }
+                ],
+                "body-lg": [
+                        "1rem",
+                        {
+                                "lineHeight": "1.5",
+                                "fontWeight": "400"
+                        }
+                ],
+                "bodySmall": [
+                        "0.75rem",
+                        {
+                                "fontWeight": "400"
+                        }
+                ],
+                "bodyMedium": [
+                        "0.875rem",
+                        {
+                                "fontWeight": "400"
+                        }
+                ],
+                "headline-sm": [
+                        "1.5rem",
+                        {
+                                "lineHeight": "1.3",
+                                "fontWeight": "400"
+                        }
+                ],
+                "headline-md": [
+                        "1.75rem",
+                        {
+                                "lineHeight": "1.3",
+                                "fontWeight": "400"
+                        }
+                ],
+                "displaySmall": [
+                        "2.25rem",
+                        {
+                                "fontWeight": "400"
+                        }
+                ],
+                "labelSmall": [
+                        "0.6875rem",
+                        {
+                                "fontWeight": "400"
+                        }
+                ],
+                "body-sm": [
+                        "0.75rem",
+                        {
+                                "lineHeight": "1.5",
+                                "fontWeight": "400"
+                        }
+                ],
+                "labelLarge": [
+                        "0.875rem",
+                        {
+                                "fontWeight": "400"
+                        }
+                ],
+                "label-md": [
+                        "0.75rem",
+                        {
+                                "lineHeight": "1",
+                                "fontWeight": "400"
+                        }
+                ],
+                "headlineSmall": [
+                        "1.5rem",
+                        {
+                                "fontWeight": "400"
+                        }
+                ],
+                "body-md": [
+                        "0.875rem",
+                        {
+                                "lineHeight": "1.5",
+                                "fontWeight": "400"
+                        }
+                ],
+                "headlineMedium": [
+                        "1.75rem",
+                        {
+                                "fontWeight": "400"
+                        }
+                ],
+                "titleLarge": [
+                        "1.375rem",
+                        {
+                                "fontWeight": "400"
+                        }
+                ],
+                "headlineLarge": [
+                        "2rem",
+                        {
+                                "fontWeight": "400"
+                        }
+                ],
+                "labelMedium": [
+                        "0.75rem",
+                        {
+                                "fontWeight": "400"
+                        }
+                ],
+                "display-lg": [
+                        "3.5rem",
+                        {
+                                "lineHeight": "1.2",
+                                "fontWeight": "400"
+                        }
+                ],
+                "headline-lg": [
+                        "2rem",
+                        {
+                                "lineHeight": "1.3",
+                                "fontWeight": "400"
+                        }
+                ],
+                "title-md": [
+                        "1rem",
+                        {
+                                "lineHeight": "1.4",
+                                "fontWeight": "400"
+                        }
+                ],
+                "title-lg": [
+                        "1.375rem",
+                        {
+                                "lineHeight": "1.4",
+                                "fontWeight": "400"
+                        }
+                ],
+                "displayMedium": [
+                        "2.8rem",
+                        {
+                                "fontWeight": "400"
+                        }
+                ],
+                "titleMedium": [
+                        "1rem",
+                        {
+                                "fontWeight": "400"
+                        }
+                ],
+                "label-lg": [
+                        "0.875rem",
+                        {
+                                "lineHeight": "1",
+                                "fontWeight": "400"
+                        }
+                ],
+                "displayLarge": [
+                        "3.5rem",
+                        {
+                                "fontWeight": "400"
+                        }
+                ],
+                "titleSmall": [
+                        "0.875rem",
+                        {
+                                "fontWeight": "400"
+                        }
+                ],
+                "bodyLarge": [
+                        "1rem",
+                        {
+                                "fontWeight": "400"
+                        }
+                ],
+                "label-sm": [
+                        "0.6875rem",
+                        {
+                                "lineHeight": "1",
+                                "fontWeight": "400"
+                        }
+                ]
+        }
+},
+    },
+  }
+</script>
+<style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #000000;
+            color: #ffffff;
+            margin: 0;
+            overflow: hidden;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        /* Custom scrollbar for content if needed */
+        ::-webkit-scrollbar {
+            width: 4px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #000000;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #333333;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body class="flex flex-col h-screen bg-black">
+<!-- Background Layer (Original Screen Content) -->
+<div class="relative flex-1 p-md opacity-20 select-none pointer-events-none">
+<!-- Top App Bar Mockup -->
+<header class="flex justify-between items-center w-full py-sm">
+<div class="flex items-center gap-sm bg-neutral/10 px-md py-sm rounded-full">
+<span class="material-symbols-outlined text-on-surface-variant">fitness_center</span>
+<span class="font-bold text-title-md">Meu plano</span>
+<span class="material-symbols-outlined">expand_more</span>
+</div>
+<div class="flex gap-sm">
+<button class="p-sm bg-neutral/10 rounded-full">
+<span class="material-symbols-outlined">expand_less</span>
+</button>
+<button class="p-sm bg-neutral/10 rounded-full">
+<span class="material-symbols-outlined">tune</span>
+</button>
+</div>
+</header>
+<!-- Day Selector Mockup -->
+<div class="flex gap-md overflow-x-auto py-lg scrollbar-hide">
+<div class="flex flex-col items-center justify-center bg-secondary-container/20 text-on-secondary-container rounded-xl px-xl py-md min-w-[80px]">
+<span class="text-label-md font-bold uppercase tracking-wider">DIA 1</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant opacity-70 px-xl py-md min-w-[80px]">
+<span class="text-label-md font-bold uppercase tracking-wider">DIA 2</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant opacity-70 px-xl py-md min-w-[80px]">
+<span class="text-label-md font-bold uppercase tracking-wider">DIA 3</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant opacity-70 px-xl py-md min-w-[80px]">
+<span class="text-label-md font-bold uppercase tracking-wider">DIA 4</span>
+</div>
+</div>
+<!-- Training Configs Mockup -->
+<div class="mt-lg">
+<h3 class="text-label-sm font-bold text-on-surface-variant uppercase tracking-widest mb-md">DIA 1 | CONFIGURAÇÕES DE TREINO</h3>
+<div class="flex flex-wrap gap-sm">
+<div class="flex items-center gap-sm bg-neutral/5 px-md py-sm rounded-full border border-white/10">
+<div class="w-6 h-6 rounded-full bg-secondary-container flex items-center justify-center text-[10px] font-bold text-on-secondary-container">M</div>
+<span class="text-label-md">Minha Academia</span>
+<span class="material-symbols-outlined text-sm">expand_more</span>
+</div>
+<div class="flex items-center gap-sm bg-neutral/5 px-md py-sm rounded-full border border-white/10">
+<span class="text-label-md">60min</span>
+<span class="material-symbols-outlined text-sm">expand_more</span>
+</div>
+<div class="flex items-center gap-sm bg-neutral/5 px-md py-sm rounded-full border border-white/10">
+<span class="text-label-md">Músculos (0)</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Modal / Bottom Sheet -->
+<div class="fixed inset-0 bg-black/60 flex items-end sm:items-center justify-center z-50">
+<div class="w-full sm:max-w-md bg-[#050B0D] rounded-t-[32px] sm:rounded-[32px] p-xl shadow-2xl transition-all duration-300 transform translate-y-0 h-[85vh] sm:h-auto overflow-y-auto">
+<!-- Modal Header -->
+<div class="flex justify-between items-center mb-xl mt-sm">
+<h2 class="text-title-lg font-medium text-white">Selecione seu modo</h2>
+<button class="p-sm hover:bg-white/10 rounded-full transition-colors active:scale-95">
+<span class="material-symbols-outlined text-white">close</span>
+</button>
+</div>
+<!-- Card Options -->
+<div class="space-y-md">
+<!-- Option 1: AI Plan (Selected) -->
+<label class="group relative flex flex-col p-lg bg-[#0B1518] rounded-[28px] cursor-pointer border border-transparent transition-all active:scale-[0.98]">
+<input checked="" class="hidden" name="plan_mode" type="radio">
+<div class="flex justify-between items-center mb-lg">
+<div class="w-12 h-12 flex items-center justify-center bg-white/5 rounded-full">
+<span class="material-symbols-outlined text-white">fitness_center</span>
+</div>
+<div class="w-6 h-6 rounded-full border-2 border-white flex items-center justify-center">
+<div class="w-3 h-3 bg-white rounded-full"></div>
+</div>
+</div>
+<span class="text-body-lg text-white tracking-wide">Plano de Treino Befit IA</span>
+</label>
+<!-- Option 2: Custom Plans -->
+<label class="group relative flex flex-col p-lg bg-[#0B1518] rounded-[28px] cursor-pointer border border-transparent transition-all active:scale-[0.98]">
+<input class="hidden" name="plan_mode" type="radio">
+<div class="flex justify-between items-center mb-lg">
+<div class="w-12 h-12 flex items-center justify-center bg-white/5 rounded-full">
+<span class="material-symbols-outlined text-white">description</span>
+</div>
+<div class="w-6 h-6 rounded-full border-2 border-white/30 flex items-center justify-center">
+<!-- Empty for unselected -->
+</div>
+</div>
+<span class="text-body-lg text-white tracking-wide">Crie e organize seus próprios treinos</span>
+</label>
+<!-- Option 3: Quick Workout -->
+<label class="group relative flex flex-col p-lg bg-[#0B1518] rounded-[28px] cursor-pointer border border-transparent transition-all active:scale-[0.98]">
+<input class="hidden" name="plan_mode" type="radio">
+<div class="flex justify-between items-center mb-lg">
+<div class="w-12 h-12 flex items-center justify-center bg-white/5 rounded-full">
+<span class="material-symbols-outlined text-white">bolt</span>
+</div>
+<div class="w-6 h-6 rounded-full border-2 border-white/30 flex items-center justify-center">
+<!-- Empty for unselected -->
+</div>
+</div>
+<span class="text-body-lg text-white tracking-wide">Criar um treino rápido</span>
+</label>
+</div>
+<!-- Spacing for safe area on mobile -->
+<div class="h-xl sm:h-0"></div>
+</div>
+</div>
+<!-- Bottom Nav Bar (Hidden below modal logic but part of shell) -->
+<nav class="fixed bottom-0 left-0 w-full z-10 flex justify-around items-center px-lg pb-lg pt-md bg-inverse-surface/50 blur-[2px] pointer-events-none">
+<div class="flex flex-col items-center justify-center bg-secondary-container/20 text-on-secondary-container rounded-full px-4 py-1">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">fitness_center</span>
+<span class="text-label-sm font-bold">Treino</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant opacity-70">
+<span class="material-symbols-outlined">leaderboard</span>
+<span class="text-label-sm font-bold">Progresso</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant opacity-70">
+<span class="material-symbols-outlined">event_note</span>
+<span class="text-label-sm font-bold">Planos</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant opacity-70">
+<span class="material-symbols-outlined">person</span>
+<span class="text-label-sm font-bold">Perfil</span>
+</div>
+</nav>
+<script>
+        // Micro-interactions for radio selection
+        const radioGroups = document.querySelectorAll('label');
+        radioGroups.forEach(group => {
+            group.addEventListener('click', function() {
+                // Reset all
+                radioGroups.forEach(g => {
+                    const indicator = g.querySelector('.w-6.h-6');
+                    if(indicator) {
+                        indicator.classList.remove('border-white');
+                        indicator.classList.add('border-white/30');
+                        indicator.innerHTML = '';
+                    }
+                });
+                
+                // Set active
+                const indicator = this.querySelector('.w-6.h-6');
+                if(indicator) {
+                    indicator.classList.add('border-white');
+                    indicator.classList.remove('border-white/30');
+                    indicator.innerHTML = '<div class="w-3 h-3 bg-white rounded-full"></div>';
+                }
+            });
+        });
+    </script>
+</body></html>

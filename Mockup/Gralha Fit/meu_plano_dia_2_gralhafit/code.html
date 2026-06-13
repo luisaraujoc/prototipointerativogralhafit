@@ -1,0 +1,221 @@
+<!DOCTYPE html><html lang="pt-BR" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>GralhaFit - Meu Plano</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#034CD5",
+                        "surface-container-lowest": "#1a1c1c",
+                        "inverse-primary": "#b5c4ff",
+                        "tertiary-container": "#caa800",
+                        "on-error": "#ffffff",
+                        "on-surface": "#FCFCFC",
+                        "surface-container-high": "#2f3131",
+                        "on-primary-fixed": "#00164e",
+                        "error": "#ba1a1a",
+                        "on-primary-container": "#c3cfff",
+                        "neutral": "#000000",
+                        "on-tertiary": "#000713",
+                        "on-primary": "#ffffff",
+                        "on-surface-variant": "#c3c5d7",
+                        "on-error-container": "#93000a",
+                        "secondary-fixed": "#dce4e7",
+                        "on-secondary-container": "#5e6569",
+                        "secondary-container": "#2f3131",
+                        "on-primary-fixed-variant": "#003cad",
+                        "on-tertiary-container": "#4c3e00",
+                        "on-secondary-fixed": "#161d20",
+                        "surface-container": "#1a1c1c",
+                        "outline-variant": "#434655",
+                        "inverse-surface": "#f0f1f1",
+                        "secondary": "#F4FBFF",
+                        "surface-container-low": "#111313",
+                        "border": "#1a1c1c",
+                        "tertiary": "#DFBA00",
+                        "surface-dim": "#1a1c1c",
+                        "outline": "#737686",
+                        "on-background": "#FCFCFC",
+                        "surface-tint": "#1452da",
+                        "background": "#000000",
+                        "on-secondary": "#034CD5",
+                        "primary-fixed": "#dce1ff",
+                        "on-tertiary-fixed-variant": "#554500",
+                        "inverse-on-surface": "#1a1c1c",
+                        "primary-fixed-dim": "#b5c4ff",
+                        "surface-variant": "#2f3131",
+                        "surface": "#1a1c1c",
+                        "secondary-fixed-dim": "#c0c8cb",
+                        "on-secondary-fixed-variant": "#41484b",
+                        "surface-container-highest": "#333535",
+                        "on-tertiary-fixed": "#221b00",
+                        "primary-container": "#034cd5",
+                        "tertiary-fixed": "#ffe174",
+                        "error-container": "#ffdad6",
+                        "surface-bright": "#242626",
+                        "tertiary-fixed-dim": "#e9c316"
+                    },
+                    borderRadius: {
+                        "sm": "8px",
+                        "md": "14px",
+                        "lg": "32px",
+                        "full": "9999px"
+                    },
+                    spacing: {
+                        "sm": "8px",
+                        "md": "16px",
+                        "lg": "24px",
+                        "xl": "32px"
+                    },
+                    fontFamily: {
+                        sans: ["Plus Jakarta Sans", "sans-serif"],
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            user-select: none;
+        }
+        .active-tab {
+            background-color: #1a1c1c;
+            border-radius: 12px;
+        }
+        body {
+            background-color: #000000;
+            color: #FCFCFC;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="flex flex-col min-h-screen bg-black">
+<!-- Top Bar -->
+<header class="flex items-center justify-between px-lg pt-xl pb-md">
+<div class="flex items-center gap-sm cursor-pointer group">
+<h1 class="text-title-lg font-bold">Meu Plano</h1>
+<span class="material-symbols-outlined text-primary group-hover:translate-y-1 transition-transform">expand_more</span>
+</div>
+<div class="flex items-center gap-md">
+<button class="relative p-sm rounded-full hover:bg-surface transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-primary rounded-full"></span>
+</button>
+<button class="p-sm rounded-full hover:bg-surface transition-colors">
+<span class="material-symbols-outlined">settings</span>
+</button>
+</div>
+</header>
+<!-- Navigation Tabs -->
+<nav class="px-md mb-lg">
+<div class="flex items-center justify-between bg-surface-container-low p-1 rounded-2xl">
+<a class="flex-1 py-3 text-center text-label-md font-bold text-on-surface-variant hover:text-on-surface transition-colors" href="#">DIA 1</a>
+<a class="flex-1 py-3 text-center text-label-md font-bold text-on-surface active-tab rounded-xl" href="#">DIA 2</a>
+<a class="flex-1 py-3 text-center text-label-md font-bold text-on-surface-variant hover:text-on-surface transition-colors" href="#">DIA 3</a>
+<a class="flex-1 py-3 text-center text-label-md font-bold text-on-surface-variant hover:text-on-surface transition-colors" href="#">DIA 4</a>
+<a class="flex-1 py-3 text-center text-label-md font-bold text-on-surface-variant hover:text-on-surface transition-colors" href="#">DIA 5</a>
+</div>
+</nav>
+<!-- Main Content -->
+<main class="flex-1 px-md space-y-xl overflow-y-auto">
+<!-- Workout Config Section -->
+<section>
+<h2 class="text-label-sm font-bold tracking-widest text-on-surface-variant mb-md px-1">CONFIGURAÇÕES DE TREINO</h2>
+<div class="flex flex-nowrap gap-sm overflow-x-auto pb-1">
+<div class="flex items-center gap-2 px-md py-sm bg-surface rounded-2xl flex-shrink-0">
+<span class="material-symbols-outlined text-sm">home_work</span>
+<span class="text-body-md font-medium">Minha Academia</span>
+</div>
+<div class="flex items-center gap-2 px-md py-sm bg-surface rounded-2xl flex-shrink-0">
+<span class="material-symbols-outlined text-sm">schedule</span>
+<span class="text-body-md font-medium">60min</span>
+</div>
+<div class="flex items-center gap-2 px-md py-sm bg-surface rounded-2xl flex-shrink-0">
+<span class="material-symbols-outlined text-sm">exercise</span>
+<span class="text-body-md font-medium">Músculos (0)</span>
+</div>
+</div>
+</section>
+<!-- Exercises Section -->
+<section>
+<h2 class="text-label-sm font-bold tracking-widest text-on-surface-variant mb-md px-1 uppercase">Os Exercícios</h2>
+<div class="space-y-md">
+<!-- Empty State / Add Exercise Card -->
+<button class="w-full flex items-center gap-md p-md border-2 border-dashed border-outline-variant rounded-2xl hover:bg-surface-container hover:border-[#CCFF00] transition-all group">
+<div class="size-12 flex items-center justify-center bg-surface-variant rounded-full group-hover:bg-[#CCFF00]/20 transition-colors">
+<span class="material-symbols-outlined text-primary group-hover:text-[#CCFF00]">add</span>
+</div>
+<div class="text-left">
+<p class="text-body-lg font-bold">ADICIONAR EXERCÍCIO</p>
+<p class="text-body-sm text-on-surface-variant">Comece a montar seu treino do Dia 2</p>
+</div>
+</button><button class="w-full py-sm text-primary font-bold text-labelLarge text-center transition-colors hover:bg-primary/5">REGISTRAR TREINO</button>
+<!-- Atmospheric Visual (Optional Decoration for Premium Feel) -->
+<div class="h-32"></div>
+</div>
+</section>
+</main>
+<!-- Action Buttons -->
+<footer class="p-md space-y-sm bg-background border-t border-surface-container mb-20">
+<button class="w-full py-4 rounded-2xl bg-[#CCFF00] text-black font-bold text-label-lg active:scale-[0.98] transition-transform shadow-lg shadow-[#CCFF00]/20">
+            INICIAR TREINO
+        </button>
+</footer>
+<!-- Shared Bottom Nav Bar (Integrated) -->
+<div class="fixed bottom-6 left-1/2 -translate-x-1/2 w-[92%] flex gap-2 bg-surface-container-high/90 backdrop-blur-md px-4 py-2 rounded-full shadow-lg z-50 items-center justify-between">
+<a class="flex flex-1 flex-col items-center justify-center gap-0.5 rounded-full text-on-surface-variant hover:text-on-surface transition-colors text-on-surface" href="#">
+<div class="text-primary flex h-8 items-center justify-center" data-icon="Calendar" data-size="24px" data-weight="fill">
+<span class="material-symbols-outlined" style="font-variation-settings: &quot;FILL&quot; 1;">calendar_month</span>
+</div>
+<p class="text-[10px] font-medium leading-normal tracking-[0.015em]">PLANO</p>
+</a>
+<a class="flex flex-1 flex-col items-center justify-center gap-0.5 rounded-full text-on-surface-variant hover:text-on-surface transition-colors" href="#">
+<div class="flex h-8 items-center justify-center" data-icon="Barbell" data-size="24px" data-weight="regular">
+<span class="material-symbols-outlined">fitness_center</span>
+</div>
+<p class="text-[10px] font-medium leading-normal tracking-[0.015em]">TREINOS</p>
+</a>
+<a class="flex flex-1 flex-col items-center justify-center gap-0.5 rounded-full text-on-surface-variant hover:text-on-surface transition-colors" href="#">
+<div class="flex h-8 items-center justify-center" data-icon="ChartLine" data-size="24px" data-weight="regular">
+<span class="material-symbols-outlined">show_chart</span>
+</div>
+<p class="text-[10px] font-medium leading-normal tracking-[0.015em]">PROGRESSO</p>
+</a>
+<a class="flex flex-1 flex-col items-center justify-center gap-0.5 rounded-full text-on-surface-variant hover:text-on-surface transition-colors" href="#">
+<div class="flex h-8 items-center justify-center" data-icon="ListChecks" data-size="24px" data-weight="regular">
+<span class="material-symbols-outlined">checklist</span>
+</div>
+<p class="text-[10px] font-medium leading-normal tracking-[0.015em]">EXERCÍCIOS</p>
+</a>
+<a class="flex flex-1 flex-col items-center justify-center gap-0.5 rounded-full text-on-surface-variant hover:text-on-surface transition-colors" href="#">
+<div class="flex h-8 items-center justify-center" data-icon="User" data-size="24px" data-weight="regular">
+<span class="material-symbols-outlined">person</span>
+</div>
+<p class="text-[10px] font-medium leading-normal tracking-[0.015em]">PERFIL</p>
+</a>
+</div>
+<script>
+        // Simple interactive feedback for buttons
+        document.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const originalScale = btn.style.transform;
+                btn.style.transform = 'scale(0.96)';
+                setTimeout(() => {
+                    btn.style.transform = originalScale;
+                }, 100);
+            });
+        });
+    </script>
+</body></html>
