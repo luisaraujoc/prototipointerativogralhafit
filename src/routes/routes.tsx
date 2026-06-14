@@ -2,15 +2,19 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { View, Text, Pressable } from 'react-native';
 
 // 1. Importações
-import OnBoarding from '@/screens/auth/OnBoarding'; // Ajuste o caminho se necessário
+import OnBoarding from '@/screens/auth/OnBoarding';
 import SurveyScreen from '@/screens/OnboardingSurvey';
+import Paywall from '@/screens/Paywall';
+import SignUp from '@/screens/SignUp';
 
 // 2. Tipagem das Rotas
 export type RootStackParamList = {
   Home: undefined;
   DesignExample: undefined;
   OnBoarding: { isLogged?: boolean }; 
-  Survey: undefined; // Adicionamos a rota do Survey (sem parâmetros obrigatórios)
+  Survey: undefined; 
+  Paywall: undefined;
+  SignUp: undefined;
 };
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -26,8 +30,9 @@ export function Routes() {
       }}
     >
       <Stack.Screen name="OnBoarding" component={OnBoarding} />
-      {/* 3. Registrando a tela do Survey */}
       <Stack.Screen name="Survey" component={SurveyScreen} />
+      <Stack.Screen name="Paywall" component={Paywall} />
+      <Stack.Screen name="SignUp" component={SignUp} />
     </Stack.Navigator>
   );
 }

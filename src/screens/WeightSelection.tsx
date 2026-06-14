@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from 'react';
-import { View, Text, Pressable } from 'react-native';
+import { View, Text, Pressable, useColorScheme } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Feather } from '@expo/vector-icons';
 import { RulerPicker } from 'react-native-ruler-picker';
@@ -19,6 +19,14 @@ export default function WeightSelection({ onNext, onBack, currentStep, totalStep
 
   const [weightKg, setWeightKg] = useState<number>(68.0);
   const [weightLb, setWeightLb] = useState<number>(149.9);
+
+  // 1. Pegamos o tema do celular em tempo real
+  const colorScheme = useColorScheme();
+  const isDark = colorScheme === 'dark';
+
+  // 2. Definimos as cores dinâmicas para os tracinhos da régua
+  const shortStepColor = isDark ? '#1e293b' : '#e4e4e4'; 
+  const longStepColor = isDark ? '#64748b' : '#A0A0A0';
 
   const imc = useMemo(() => {
     return (weightKg / (heightInMeters * heightInMeters)).toFixed(1);
@@ -51,7 +59,7 @@ export default function WeightSelection({ onNext, onBack, currentStep, totalStep
           onPress={onBack}
           className="w-12 h-12 bg-surface rounded-full items-center justify-center active:scale-90 active:opacity-80 transition-all"
         >
-          <Feather name="chevron-left" size={24} color="var(--color-on-tertiary)" />
+          <Feather name="chevron-left" size={24} color="var(--color-tertiary)" />
         </Pressable>
         <Text className="text-body-large text-on-tertiary font-bold tracking-widest">
           {currentStep} / {totalSteps}
@@ -97,45 +105,46 @@ export default function WeightSelection({ onNext, onBack, currentStep, totalStep
         {showRuler && (
           unit === 'KG' ? (
             <RulerPicker
-              min={30} 
-              max={250} 
-              step={0.1} 
-              fractionDigits={1} 
-              initialValue={weightKg}
+              // 1. Multiplicamos os limites por 10 (30 vira 300, 250 vira 2500)
+              min={300} 
+              max={2500} 
+              step={1} // Passos inteiros, adeus erro de precisão!
+              fractionDigits={0} 
+              // 2. Multiplicamos o valor inicial por 10
+              initialValue={Math.round(weightKg * 10)}
               onValueChange={(number) => {
-                const numVal = parseFloat(number);
+                // 3. Pegamos o valor inteiro da régua (ex: 681) e dividimos por 10 (vira 68.1)
+                const numVal = Number((parseFloat(number) / 10).toFixed(1));
                 setWeightKg(numVal);
                 Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
               }}
-              // A SALVAÇÃO: Definir 1px absoluto para impedir o Android de ver 0px.
               valueTextStyle={{ color: 'transparent', fontSize: 1}} 
               unitTextStyle={{ color: 'transparent', fontSize: 1}}
               indicatorColor="#034cd5" 
-              shortStepColor="#e4e4e4" 
-              longStepColor="#A0A0A0" 
-              // Aumentar a distância entre o topo e o "texto invisível" para manter o alinhamento
+              shortStepColor={shortStepColor} 
+              longStepColor={longStepColor} 
               indicatorHeight={50}
               height={120} 
               width={350}
             />
           ) : (
             <RulerPicker
-              min={60} 
-              max={400} 
-              step={0.1} 
-              fractionDigits={1} 
-              initialValue={weightLb}
+              // Mesma lógica para Libras: Limites e InitialValue multiplicados por 10
+              min={600} 
+              max={4000} 
+              step={1} 
+              fractionDigits={0} 
+              initialValue={Math.round(weightLb * 10)}
               onValueChange={(number) => {
-                const numVal = parseFloat(number);
+                const numVal = Number((parseFloat(number) / 10).toFixed(1));
                 setWeightLb(numVal);
                 Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
               }}
-              // A SALVAÇÃO: Definir 1px absoluto para impedir o Android de ver 0px.
               valueTextStyle={{ color: 'transparent', fontSize: 1}} 
-              unitTextStyle={{ color: 'transparent', fontSize: 1 }}
+              unitTextStyle={{ color: 'transparent', fontSize: 1}}
               indicatorColor="#034cd5" 
-              shortStepColor="#e4e4e4" 
-              longStepColor="#A0A0A0" 
+              shortStepColor={shortStepColor} 
+              longStepColor={longStepColor} 
               indicatorHeight={50}
               height={120} 
               width={350}

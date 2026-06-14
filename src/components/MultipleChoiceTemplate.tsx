@@ -61,7 +61,7 @@ export default function MultipleChoiceTemplate({
           onPress={onBack}
           className="w-12 h-12 bg-surface rounded-full items-center justify-center active:scale-90 active:opacity-80 transition-all"
         >
-          <Feather name="chevron-left" size={24} color="var(--color-on-tertiary)" />
+          <Feather name="chevron-left" size={24} color="var(--color-tertiary)" />
         </Pressable>
         <Text className="text-body-large text-on-tertiary font-bold tracking-widest">
           {currentStep} / {totalSteps}

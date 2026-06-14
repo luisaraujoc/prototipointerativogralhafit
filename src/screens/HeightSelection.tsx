@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, Pressable } from 'react-native';
+import { View, Text, Pressable, useColorScheme } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Feather } from '@expo/vector-icons';
 import WheelPicker from 'react-native-wheel-picker-expo';
@@ -13,7 +13,6 @@ const CM_DECIMAL_OPTIONS = Array.from({ length: 10 }, (_, i) => ({ label: `${i}`
 const FT_MAIN_OPTIONS = Array.from({ length: 6 }, (_, i) => ({ label: `${i + 3}`, value: i + 3 })); // 3 a 8 pés
 const FT_INCHES_OPTIONS = Array.from({ length: 12 }, (_, i) => ({ label: `${i}`, value: i })); // 0 a 11 polegadas
 
-// 3. Tipagem das Props do Orquestrador
 type Props = { 
   onNext: (heightInCm: number) => void; 
   onBack: () => void; 
@@ -22,22 +21,25 @@ type Props = {
 };
 
 export default function HeightSelection({ onNext, onBack, currentStep, totalSteps }: Props) {
-  // Estado da Unidade de Medida
   const [unit, setUnit] = useState<'CM' | 'FT'>('CM');
 
-  // Estados para CM
   const [cmMain, setCmMain] = useState(182);
   const [cmDecimal, setCmDecimal] = useState(0);
 
-  // Estados para FT
   const [ftMain, setFtMain] = useState(5);
   const [ftInches, setFtInches] = useState(11);
 
-  // Índices Iniciais
-  const initialCmMainIndex = CM_MAIN_OPTIONS.findIndex(o => o.value === 182);
-  const initialCmDecIndex = CM_DECIMAL_OPTIONS.findIndex(o => o.value === 0);
-  const initialFtMainIndex = FT_MAIN_OPTIONS.findIndex(o => o.value === 5);
-  const initialFtIncIndex = FT_INCHES_OPTIONS.findIndex(o => o.value === 11);
+  // A MÁGICA 1: Índices Dinâmicos! 
+  // Agora eles leem o estado atual para não perder a posição quando o tema mudar.
+  const currentCmMainIndex = CM_MAIN_OPTIONS.findIndex(o => o.value === cmMain);
+  const currentCmDecIndex = CM_DECIMAL_OPTIONS.findIndex(o => o.value === cmDecimal);
+  const currentFtMainIndex = FT_MAIN_OPTIONS.findIndex(o => o.value === ftMain);
+  const currentFtIncIndex = FT_INCHES_OPTIONS.findIndex(o => o.value === ftInches);
+
+  // Tema do Sistema
+  const colorScheme = useColorScheme();
+  const isDark = colorScheme === 'dark';
+  const pickerBgColor = isDark ? '#000713' : '#fcfcfc';
 
   return (
     <SafeAreaView className="flex-1 bg-neutral px-lg">
@@ -48,7 +50,7 @@ export default function HeightSelection({ onNext, onBack, currentStep, totalStep
           onPress={onBack}
           className="w-12 h-12 bg-surface rounded-full items-center justify-center active:scale-90 active:opacity-80 transition-all"
         >
-          <Feather name="chevron-left" size={24} color="var(--color-on-tertiary)" />
+          <Feather name="chevron-left" size={24} color="var(--color-tertiary)" />
         </Pressable>
         <Text className="text-body-large text-on-tertiary font-bold tracking-widest">
           {currentStep} / {totalSteps}
@@ -97,33 +99,21 @@ export default function HeightSelection({ onNext, onBack, currentStep, totalStep
       {/* A ROLETA DUPLA */}
       <View className="flex-1 items-center justify-center w-full relative">
         
-        {/* OVERLAY DE FUNDO */}
-        <View 
-          className="absolute w-full bg-surface" 
-          style={{ height: 50, borderRadius: 14 }} 
-        />
-
-        {/* Separador Visual (Vírgula aparece apenas no CM) */}
-        <Text 
-          className="absolute text-on-tertiary text-xl font-bold" 
-          style={{ zIndex: 10, top: '50%', marginTop: -14, display: unit === 'CM' ? 'flex' : 'none' }}
-        >
-          ,
-        </Text>
-
-        {/* --- CONTAINER DAS ROLETAS DE CM (Oculta se for FT) --- */}
+        {/* --- CONTAINER DAS ROLETAS DE CM --- */}
         <View className="flex-row w-full justify-between px-10" style={{ display: unit === 'CM' ? 'flex' : 'none' }}>
           <View className="flex-1">
             <WheelPicker
-              initialSelectedIndex={initialCmMainIndex}
+              // A MÁGICA 2: O key amarrado ao colorScheme força o recarregamento instantâneo
+              key={`cm-main-${colorScheme}`} 
+              initialSelectedIndex={currentCmMainIndex}
               items={CM_MAIN_OPTIONS}
               onChange={({ item }) => {
                 setCmMain(item.value);
                 Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
               }}
               height={250}
-              backgroundColor="transparent"
-              selectedStyle={{ borderColor: 'transparent' }}
+              backgroundColor={pickerBgColor}
+              selectedStyle={{ borderColor: 'transparent', borderWidth: 0 }}
               renderItem={(props) => {
                 const isSelected = props.label === cmMain.toString();
                 return (
@@ -137,15 +127,16 @@ export default function HeightSelection({ onNext, onBack, currentStep, totalStep
 
           <View className="flex-1">
             <WheelPicker
-              initialSelectedIndex={initialCmDecIndex}
+              key={`cm-dec-${colorScheme}`}
+              initialSelectedIndex={currentCmDecIndex}
               items={CM_DECIMAL_OPTIONS}
               onChange={({ item }) => {
                 setCmDecimal(item.value);
                 Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
               }}
               height={250}
-              backgroundColor="transparent"
-              selectedStyle={{ borderColor: 'transparent' }}
+              backgroundColor={pickerBgColor}
+              selectedStyle={{ borderColor: 'transparent', borderWidth: 0 }}
               renderItem={(props) => {
                 const isSelected = props.label === cmDecimal.toString();
                 return (
@@ -158,19 +149,20 @@ export default function HeightSelection({ onNext, onBack, currentStep, totalStep
           </View>
         </View>
 
-        {/* --- CONTAINER DAS ROLETAS DE FT (Oculta se for CM) --- */}
+        {/* --- CONTAINER DAS ROLETAS DE FT --- */}
         <View className="flex-row w-full justify-between px-10" style={{ display: unit === 'FT' ? 'flex' : 'none' }}>
           <View className="flex-1">
             <WheelPicker
-              initialSelectedIndex={initialFtMainIndex}
+              key={`ft-main-${colorScheme}`}
+              initialSelectedIndex={currentFtMainIndex}
               items={FT_MAIN_OPTIONS}
               onChange={({ item }) => {
                 setFtMain(item.value);
                 Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
               }}
               height={250}
-              backgroundColor="transparent"
-              selectedStyle={{ borderColor: 'transparent' }}
+              backgroundColor={pickerBgColor}
+              selectedStyle={{ borderColor: 'transparent', borderWidth: 0 }}
               renderItem={(props) => {
                 const isSelected = props.label === ftMain.toString();
                 return (
@@ -184,15 +176,16 @@ export default function HeightSelection({ onNext, onBack, currentStep, totalStep
 
           <View className="flex-1">
             <WheelPicker
-              initialSelectedIndex={initialFtIncIndex}
+              key={`ft-inc-${colorScheme}`}
+              initialSelectedIndex={currentFtIncIndex}
               items={FT_INCHES_OPTIONS}
               onChange={({ item }) => {
                 setFtInches(item.value);
                 Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
               }}
               height={250}
-              backgroundColor="transparent"
-              selectedStyle={{ borderColor: 'transparent' }}
+              backgroundColor={pickerBgColor}
+              selectedStyle={{ borderColor: 'transparent', borderWidth: 0 }}
               renderItem={(props) => {
                 const isSelected = props.label === ftInches.toString();
                 return (
@@ -204,6 +197,22 @@ export default function HeightSelection({ onNext, onBack, currentStep, totalStep
             />
           </View>
         </View>
+
+        {/* A BARRA DE SELEÇÃO INVISÍVEL AO TOQUE! */}
+        <View 
+          className="absolute w-full bg-black/5 dark:bg-white/10" 
+          style={{ height: 50, borderRadius: 14 }} 
+          pointerEvents="none"
+        />
+
+        {/* Separador Visual (Vírgula aparece apenas no CM) */}
+        <Text 
+          className="absolute text-on-tertiary text-xl font-bold" 
+          style={{ zIndex: 10, top: '50%', marginTop: -14, display: unit === 'CM' ? 'flex' : 'none' }}
+          pointerEvents="none"
+        >
+          ,
+        </Text>
 
       </View>
 

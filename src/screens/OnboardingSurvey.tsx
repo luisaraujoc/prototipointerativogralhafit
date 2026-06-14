@@ -18,7 +18,7 @@ import DaysPerWeekSelection from './DaysPerWeekSelection';
 export default function SurveyScreen({ navigation }: any) {
   // Controle de qual pergunta estamos vendo agora (inicia no índice 0)
   const [currentIndex, setCurrentIndex] = useState(0);
-  
+
   // Objeto gigante que vai guardar todas as respostas para mandar pro Backend depois
   const [answers, setAnswers] = useState<Record<string, any>>({});
 
@@ -35,10 +35,13 @@ export default function SurveyScreen({ navigation }: any) {
     if (currentIndex < totalSteps - 1) {
       setCurrentIndex(prev => prev + 1);
     } else {
-      // Se acabou, imprime tudo e finaliza o Onboarding!
+      // Se acabou, imprime tudo no terminal para você ver!
       console.log('🎉 RESPOSTAS FINAIS DO GRALHAFIT:', newAnswers);
-      // Aqui entraria a chamada da sua API e o redirecionamento:
-      // navigation.replace('Home');
+
+      // Aqui entraria a chamada da sua API para salvar no banco de dados
+
+      // Redireciona para o Paywall destruindo o histórico do questionário!
+      navigation.replace('Paywall');
     }
   };
 
@@ -70,7 +73,7 @@ export default function SurveyScreen({ navigation }: any) {
           showTerms={currentQuestion.showTerms}
         />
       );
-    
+
     case 'multipleChoice':
       return (
         <MultipleChoiceTemplate
@@ -82,40 +85,40 @@ export default function SurveyScreen({ navigation }: any) {
           onBack={handleBack}
         />
       );
-    
+
     case 'age':
       return <AgeSelection onNext={handleNext} onBack={handleBack} currentStep={currentIndex + 1} totalSteps={totalSteps} />;
-    
+
     case 'height':
       return <HeightSelection onNext={handleNext} onBack={handleBack} currentStep={currentIndex + 1} totalSteps={totalSteps} />;
-    
+
     case 'weight':
       return (
-        <WeightSelection 
-          onNext={handleNext} 
-          onBack={handleBack} 
-          currentStep={currentIndex + 1} 
-          totalSteps={totalSteps} 
+        <WeightSelection
+          onNext={handleNext}
+          onBack={handleBack}
+          currentStep={currentIndex + 1}
+          totalSteps={totalSteps}
           // Passamos a altura respondida no passo 5 (se existir) para calcular o IMC!
-          heightInMeters={answers.height ? answers.height / 100 : 1.82} 
+          heightInMeters={answers.height ? answers.height / 100 : 1.82}
         />
       );
-    
+
     case 'weightGoal':
       return (
-        <WeightGoalSelection 
-          onNext={handleNext} 
-          onBack={handleBack} 
-          currentStep={currentIndex + 1} 
-          totalSteps={totalSteps} 
+        <WeightGoalSelection
+          onNext={handleNext}
+          onBack={handleBack}
+          currentStep={currentIndex + 1}
+          totalSteps={totalSteps}
           // Passamos o peso atual respondido no passo 6 (se existir)
-          currentWeightKg={answers.weight || 68.0} 
+          currentWeightKg={answers.weight || 68.0}
         />
       );
-    
+
     case 'daysPerWeek':
       return <DaysPerWeekSelection onNext={handleNext} onBack={handleBack} currentStep={currentIndex + 1} totalSteps={totalSteps} />;
-    
+
     default:
       return <View className="flex-1 bg-neutral" />;
   }

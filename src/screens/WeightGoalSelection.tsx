@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from 'react';
-import { View, Text, Pressable } from 'react-native';
+import { View, Text, Pressable, useColorScheme } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Feather } from '@expo/vector-icons';
 import { RulerPicker } from 'react-native-ruler-picker';
@@ -15,15 +15,20 @@ type Props = {
 
 export default function WeightGoalSelection({ onNext, onBack, currentStep, totalSteps, currentWeightKg }: Props) {
   const [unit, setUnit] = useState<'KG' | 'LB'>('KG');
-  
-  // O Estado Salvador: Controla o respiro da memória
   const [showRuler, setShowRuler] = useState(true);
 
-  // Iniciando a meta com o mesmo peso atual
   const [goalWeightKg, setGoalWeightKg] = useState<number>(currentWeightKg);
   const [goalWeightLb, setGoalWeightLb] = useState<number>(Number((currentWeightKg * 2.20462).toFixed(1)));
 
-  // Cálculo da porcentagem de ganho/perda
+  // 1. Pegamos o tema do celular em tempo real!
+  const colorScheme = useColorScheme();
+  const isDark = colorScheme === 'dark';
+
+  // 2. Definimos cores dinâmicas para os tracinhos da régua
+  // No dark, usamos um tom puxado pro slate/zinc escuro para não ofuscar a visão
+  const shortStepColor = isDark ? '#1e293b' : '#e4e4e4'; 
+  const longStepColor = isDark ? '#64748b' : '#A0A0A0';
+
   const { percentageText, icon, message } = useMemo(() => {
     const diff = goalWeightKg - currentWeightKg;
     const percentage = Math.abs((diff / currentWeightKg) * 100).toFixed(2);
@@ -49,15 +54,12 @@ export default function WeightGoalSelection({ onNext, onBack, currentStep, total
     }
   }, [goalWeightKg, currentWeightKg]);
 
-  // Função para mudar a unidade com segurança de memória
   const toggleUnit = (newUnit: 'KG' | 'LB') => {
     if (newUnit === unit) return;
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
     
-    // Esconde a régua
     setShowRuler(false);
 
-    // Converte os valores
     if (newUnit === 'LB') {
       setGoalWeightLb(Number((goalWeightKg * 2.20462).toFixed(1)));
     } else {
@@ -65,7 +67,6 @@ export default function WeightGoalSelection({ onNext, onBack, currentStep, total
     }
     setUnit(newUnit);
 
-    // Respira e renderiza
     setTimeout(() => {
       setShowRuler(true);
     }, 50);
@@ -74,7 +75,7 @@ export default function WeightGoalSelection({ onNext, onBack, currentStep, total
   return (
     <SafeAreaView className="flex-1 bg-neutral px-lg">
       
-      {/* 1. HEADER */}
+      {/* HEADER */}
       <View className="flex-row items-center justify-between mt-sm mb-lg">
         <Pressable
           onPress={onBack}
@@ -88,12 +89,12 @@ export default function WeightGoalSelection({ onNext, onBack, currentStep, total
         <View className="w-12 h-12" />
       </View>
 
-      {/* 2. TÍTULO */}
+      {/* TÍTULO */}
       <Text className="text-display-small text-on-tertiary mb-md leading-tight tracking-tight mt-md">
         Qual é a sua meta de peso?
       </Text>
 
-      {/* 3. SELETOR DE UNIDADE */}
+      {/* SELETOR DE UNIDADE */}
       <View className="flex-row bg-surface rounded-full p-1 mx-auto w-64 mb-xl mt-sm">
         <Pressable 
           onPress={() => toggleUnit('KG')}
@@ -110,7 +111,7 @@ export default function WeightGoalSelection({ onNext, onBack, currentStep, total
         </Pressable>
       </View>
 
-      {/* 4. DISPLAY GIGANTE DA META */}
+      {/* DISPLAY GIGANTE DA META */}
       <View className="flex-row items-end justify-center mb-xl">
         <Text className="text-on-tertiary font-bold tracking-tighter" style={{ fontSize: 96, lineHeight: 100 }}>
           {unit === 'KG' ? goalWeightKg.toFixed(1).replace('.', ',') : goalWeightLb.toFixed(1).replace('.', ',')}
@@ -120,7 +121,7 @@ export default function WeightGoalSelection({ onNext, onBack, currentStep, total
         </Text>
       </View>
 
-      {/* 5. A RÉGUA (Com altura fixa e renderização condicional) */}
+      {/* A RÉGUA */}
       <View className="items-center justify-center mb-xl w-full" style={{ height: 120 }}>
         
         {showRuler && (
@@ -140,9 +141,10 @@ export default function WeightGoalSelection({ onNext, onBack, currentStep, total
               valueTextStyle={{ color: 'transparent', fontSize: 1}} 
               unitTextStyle={{ color: 'transparent', fontSize: 1}}
               indicatorColor="#034cd5" 
-              shortStepColor="#e4e4e4" 
-              longStepColor="#A0A0A0" 
-              indicatorHeight={50} // Alinhamento da linha azul
+              // 3. Aplicando as cores dinâmicas nos traços
+              shortStepColor={shortStepColor} 
+              longStepColor={longStepColor} 
+              indicatorHeight={50} 
               height={120} 
               width={350}
             />
@@ -162,9 +164,10 @@ export default function WeightGoalSelection({ onNext, onBack, currentStep, total
               valueTextStyle={{ color: 'transparent', fontSize: 1}} 
               unitTextStyle={{ color: 'transparent', fontSize: 1}}
               indicatorColor="#034cd5" 
-              shortStepColor="#e4e4e4" 
-              longStepColor="#A0A0A0" 
-              indicatorHeight={50} // Alinhamento da linha azul
+              // 3. Aplicando as cores dinâmicas nos traços
+              shortStepColor={shortStepColor} 
+              longStepColor={longStepColor} 
+              indicatorHeight={50} 
               height={120} 
               width={350}
             />
@@ -173,7 +176,7 @@ export default function WeightGoalSelection({ onNext, onBack, currentStep, total
 
       </View>
 
-      {/* 6. CARD DINÂMICO DE PORCENTAGEM */}
+      {/* CARD DINÂMICO DE PORCENTAGEM */}
       <View className="card-surface flex-row items-center mt-auto mb-xl gap-md shadow-sm">
         <Text className="text-3xl">{icon}</Text>
         <View className="flex-1">
@@ -184,7 +187,7 @@ export default function WeightGoalSelection({ onNext, onBack, currentStep, total
         </View>
       </View>
 
-      {/* 7. BOTÃO DE PRÓXIMO */}
+      {/* BOTÃO DE PRÓXIMO */}
       <Pressable 
         className="btn-primary mb-xl"
         onPress={() => onNext(goalWeightKg)} 
