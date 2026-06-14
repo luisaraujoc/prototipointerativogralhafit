@@ -1,4 +1,4 @@
-import { View, Text, Pressable, ScrollView } from 'react-native';
+import { View, Text, Pressable, ScrollView, StatusBar } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Feather } from '@expo/vector-icons'; // Pacote de ícones nativo do Expo
 
@@ -40,11 +40,11 @@ export default function QuestionTemplate({
         >
           <Feather name="chevron-left" size={24} color="var(--color-on-tertiary)" />
         </Pressable>
-        
+
         <Text className="text-body-large text-on-tertiary font-bold tracking-widest">
           {currentStep} / {totalSteps}
         </Text>
-        
+
         {/* Espaçador vazio para centralizar o texto do passo perfeitamente */}
         <View className="w-12 h-12" />
       </View>
@@ -63,8 +63,8 @@ export default function QuestionTemplate({
       </Text>
 
       {/* LISTA DE OPÇÕES (CARDS) */}
-      <ScrollView 
-        className="flex-1" 
+      <ScrollView
+        className="flex-1"
         contentContainerClassName="gap-md pb-xl"
         showsVerticalScrollIndicator={false}
       >

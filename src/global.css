@@ -8,6 +8,7 @@
     ========================================
 */
 @layer base {
+  /* TEMA CLARO (Padrão) */
   :root {
     /* Colors */
     --color-primary: #034cd5;
@@ -33,6 +34,22 @@
     --text-label-large: 14px;
     --text-body-medium: 14px;
     --text-body-large: 16px;
+  }
+
+  /* TEMA ESCURO (Automático pelo Sistema) */
+  @media (prefers-color-scheme: dark) {
+    :root {
+      /* O Primary fica levemente mais claro para dar contraste legível no fundo escuro */
+      --color-primary: #3a7cff; 
+      --color-secondary: #001a33; 
+      --color-tertiary: #dfba00; /* Amarelo se mantém bem no claro e no escuro */
+      
+      /* Invertemos os fundos e os textos */
+      --color-neutral: #000713; /* Fundo geral vira quase preto */
+      --color-surface: #111a27; /* Fundo dos cards fica um tom sutilmente mais claro que o neutral */
+      --color-on-tertiary: #fcfcfc; /* Textos viram quase branco */
+      --color-border: #1e293b; /* Borda sutil e escura */
+    }
   }
 }
 

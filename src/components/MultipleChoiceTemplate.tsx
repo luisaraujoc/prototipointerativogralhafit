@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, Pressable, ScrollView } from 'react-native';
+import { View, Text, Pressable, ScrollView, StatusBar } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Feather } from '@expo/vector-icons';
 import * as Haptics from 'expo-haptics';
@@ -28,7 +28,7 @@ export default function MultipleChoiceTemplate({
 }: Props) {
   // Guarda um array com os IDs selecionados
   const [selectedIds, setSelectedIds] = useState<string[]>([]);
-  
+
   const progressPercentage = (currentStep / totalSteps) * 100;
 
   const toggleOption = (id: string) => {
@@ -43,7 +43,7 @@ export default function MultipleChoiceTemplate({
     setSelectedIds((prev) => {
       // Se tinha "não" ou "nenhum" marcado e o usuário clicou em outra coisa, remove a negativa
       const filtered = prev.filter((item) => item !== 'nao' && item !== 'nenhum');
-      
+
       if (filtered.includes(id)) {
         return filtered.filter((item) => item !== id); // Desmarca se já estava marcado
       } else {
@@ -83,32 +83,30 @@ export default function MultipleChoiceTemplate({
       </Text>
 
       {/* LISTA DE OPÇÕES MÚLTIPLAS */}
-      <ScrollView 
-        className="flex-1" 
+      <ScrollView
+        className="flex-1"
         contentContainerClassName="gap-md pb-xl"
         showsVerticalScrollIndicator={false}
       >
         {options.map((option) => {
           const isSelected = selectedIds.includes(option.id);
-          
+
           return (
             <Pressable
               key={option.id}
               onPress={() => toggleOption(option.id)}
-              className={`card-surface flex-row justify-between items-center transition-all ${
-                isSelected 
+              className={`card-surface flex-row justify-between items-center transition-all ${isSelected
                   ? 'border border-primary bg-primary/5' // Destaca a opção selecionada com uma borda azul e fundo super claro
                   : 'border border-transparent'
-              }`}
+                }`}
             >
               <Text className={`text-body-large ${isSelected ? 'text-primary font-bold' : 'text-on-tertiary'}`}>
                 {option.label}
               </Text>
-              
+
               {/* Checkbox visual */}
-              <View className={`w-6 h-6 rounded-md border items-center justify-center transition-all ${
-                isSelected ? 'bg-primary border-primary' : 'border-border bg-neutral'
-              }`}>
+              <View className={`w-6 h-6 rounded-md border items-center justify-center transition-all ${isSelected ? 'bg-primary border-primary' : 'border-border bg-neutral'
+                }`}>
                 {isSelected && <Feather name="check" size={16} color="white" />}
               </View>
             </Pressable>
@@ -117,7 +115,7 @@ export default function MultipleChoiceTemplate({
       </ScrollView>
 
       {/* BOTÃO DE PRÓXIMO (Fixo no rodapé) */}
-      <Pressable 
+      <Pressable
         className={`btn-primary mb-xl mt-md ${selectedIds.length === 0 ? 'opacity-50' : 'opacity-100'}`}
         disabled={selectedIds.length === 0} // Impede de avançar sem selecionar nada
         onPress={() => onNext(selectedIds)}

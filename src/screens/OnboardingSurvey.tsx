@@ -2,11 +2,11 @@ import React, { useState } from 'react';
 import { View } from 'react-native';
 
 // 1. Importando os dados das 31 perguntas
-import { surveyQuestions } from '../data/surveyQuestions';
+import { surveyQuestions } from '@/data/surveyQuestions';
 
 // 2. Importando os Templates Visuais
-import QuestionTemplate from '../components/QuestionTemplate';
-import MultipleChoiceTemplate from '../components/MultipleChoiceTemplate';
+import QuestionTemplate from '@/components/QuestionTemplate';
+import MultipleChoiceTemplate from '@/components/MultipleChoiceTemplate';
 
 // 3. Importando as Telas Customizadas
 import AgeSelection from './AgeSelection';

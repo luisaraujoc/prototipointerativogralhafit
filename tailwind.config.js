@@ -9,15 +9,15 @@ module.exports = {
   presets: [require("nativewind/preset")],
   theme: {
     extend: {
-      // 1. CORES (Primary, Surface, Neutral, etc.)
+      // 1. CORES (Agora conectadas às variáveis do global.css!)
       colors: {
-        primary: "#034CD5",
-        secondary: "#F4FBFF",
-        tertiary: "#DFBA00",
-        neutral: "#FCFCFC",
-        surface: "#F1F1F1",
-        "on-tertiary": "#000713",
-        border: "#E4E4E4",
+        primary: "var(--color-primary)",
+        secondary: "var(--color-secondary)",
+        tertiary: "var(--color-tertiary)",
+        neutral: "var(--color-neutral)",
+        surface: "var(--color-surface)",
+        "on-tertiary": "var(--color-on-tertiary)",
+        border: "var(--color-border)",
       },
       
       // 2. BORDAS ARREDONDADAS (Squircles do Design Apple)
