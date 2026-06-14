@@ -1,0 +1,152 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* 
+    ========================================
+    1. DESIGN TOKENS (Variáveis Globais)
+    ========================================
+*/
+@layer base {
+  :root {
+    /* Colors */
+    --color-primary: #034cd5;
+    --color-secondary: #f4fbff;
+    --color-tertiary: #dfba00;
+    --color-neutral: #fcfcfc;
+    --color-surface: #f1f1f1;
+    --color-on-tertiary: #000713;
+    --color-border: #e4e4e4;
+
+    /* Border Radius (Squircles) */
+    --radius-sm: 8px;
+    --radius-md: 14px;
+    --radius-lg: 32px;
+
+    /* Spacing */
+    --spacing-sm: 8px;
+    --spacing-md: 16px;
+    --spacing-lg: 24px;
+    --spacing-xl: 32px;
+
+    /* Typography Sizes (Rem mapped to px roughly for RN) */
+    --text-label-large: 14px;
+    --text-body-medium: 14px;
+    --text-body-large: 16px;
+  }
+}
+
+/* ========================================
+  2. COMPONENTES (Estilos de UI)
+  ========================================
+*/
+@layer components {
+  /* --- BOTÕES --- */
+  /* Regra do Design: Cantos suaves, não utilizar tertiary para ações comuns */
+
+  .btn-primary {
+    background-color: var(--color-primary);
+    border-radius: var(--radius-sm);
+    padding: 12px 24px;
+    align-items: center;
+    justify-content: center;
+    /* Efeito de clique: diminui 5% (scale-95), escurece/aplica opacidade, transição suave */
+    @apply active:scale-95 active:opacity-80 transition-all duration-150 ease-in-out;
+  }
+  .btn-primary-text {
+    color: var(--color-neutral);
+    font-size: var(--text-label-large);
+    font-weight: 500;
+  }
+
+  .btn-secondary {
+    background-color: var(--color-secondary);
+    border-radius: var(--radius-sm);
+    padding: 12px 24px;
+    align-items: center;
+    justify-content: center;
+    @apply active:scale-95 active:opacity-70 transition-all duration-150 ease-in-out;
+  }
+  .btn-secondary-text {
+    color: var(--color-primary);
+    font-size: var(--text-label-large);
+    font-weight: 500;
+  }
+
+  .btn-tertiary {
+    background-color: var(--color-tertiary);
+    border-radius: var(--radius-sm);
+    padding: 12px 24px;
+    align-items: center;
+    justify-content: center;
+    @apply active:scale-95 active:opacity-80 transition-all duration-150 ease-in-out;
+  }
+  .btn-tertiary-text {
+    color: var(--color-on-tertiary);
+    font-size: var(--text-label-large);
+    font-weight: 500;
+  }
+
+  .btn-ghost {
+    background-color: transparent;
+    border-radius: var(--radius-sm);
+    padding: 12px 24px;
+    align-items: center;
+    justify-content: center;
+    /* No ghost, além de diminuir, adicionamos um fundo bem sutil ao clicar */
+    @apply active:scale-95 active:bg-black/5 transition-all duration-150 ease-in-out;
+  }
+  .btn-ghost-text {
+    color: var(--color-primary);
+    font-size: var(--text-label-large);
+    font-weight: 500;
+  }
+
+  /* --- INPUTS --- */
+  /* Regra do Design: Forms preenchidos com cores sólidas (surface) padrão iOS */
+
+  .input-default {
+    background-color: var(--color-neutral);
+    color: var(--color-on-tertiary);
+    border-radius: var(--radius-sm);
+    padding: 14px 16px;
+    font-size: var(--text-body-medium);
+    border-width: 1px;
+    border-color: var(--color-border);
+  }
+
+  .input-filled {
+    background-color: var(--color-surface);
+    color: var(--color-on-tertiary);
+    border-radius: var(--radius-sm);
+    padding: 14px 16px;
+    font-size: var(--text-body-medium);
+  }
+
+  /* --- CARDS & CONTAINERS --- */
+  /* Regra do Design: Profundidade estabelecida pelo contraste entre 'neutral' e 'surface' */
+
+  .card-default {
+    background-color: var(--color-neutral);
+    border-radius: var(--radius-sm);
+    padding: var(--spacing-md);
+  }
+
+  .card-surface {
+    background-color: var(--color-surface);
+    border-radius: var(--radius-md); /* 14px */
+    padding: var(--spacing-md);
+  }
+
+  .modal-container {
+    background-color: var(--color-neutral);
+    border-radius: var(--radius-lg); /* 32px */
+    padding: var(--spacing-md);
+  }
+
+  .bottom-sheet {
+    background-color: var(--color-neutral);
+    border-radius: var(--radius-lg); /* 32px */
+    padding: var(--spacing-md);
+  }
+}
