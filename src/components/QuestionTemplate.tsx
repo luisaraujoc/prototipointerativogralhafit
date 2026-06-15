@@ -1,6 +1,7 @@
 import { View, Text, Pressable, ScrollView, StatusBar } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { Feather } from '@expo/vector-icons'; // Pacote de ícones nativo do Expo
+import { AntDesign, Feather } from '@expo/vector-icons'; // Pacote de ícones nativo do Expo
+import { cssInterop } from 'nativewind';
 
 export type Option = {
   id: string;
@@ -17,6 +18,20 @@ type Props = {
   showTerms?: boolean; // Para exibir os termos na primeira tela, como na imagem
 };
 
+cssInterop(Feather, {
+  className: {
+    target: 'style',
+    nativeStyleToProp: { color: true }
+  },
+});
+
+cssInterop(AntDesign, {
+  className: {
+    target: 'style',
+    nativeStyleToProp: { color: true }
+  },
+});
+
 export default function QuestionTemplate({
   currentStep,
   totalSteps,
@@ -31,14 +46,14 @@ export default function QuestionTemplate({
 
   return (
     <SafeAreaView className="flex-1 bg-neutral px-lg">
-      
+
       {/* HEADER: Botão Voltar + Contador de Passos */}
       <View className="flex-row items-center justify-between mt-sm mb-lg">
         <Pressable
           onPress={onBack}
           className="w-12 h-12 bg-surface rounded-full items-center justify-center active:scale-90 active:opacity-80 transition-all"
         >
-          <Feather name="chevron-left" size={24} color="var(--color-tertiary)" />
+          <Feather name="chevron-left" size={24} className="text-tertiary" />
         </Pressable>
 
         <Text className="text-body-large text-on-tertiary font-bold tracking-widest">
@@ -78,7 +93,7 @@ export default function QuestionTemplate({
             <Text className="text-body-large text-on-tertiary">
               {option.label}
             </Text>
-            <Feather name="chevron-right" size={20} color="var(--color-on-tertiary)" />
+            <Feather name="chevron-right" size={20} className="color-on-tertiary" />
           </Pressable>
         ))}
       </ScrollView>

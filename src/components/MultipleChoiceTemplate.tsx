@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { View, Text, Pressable, ScrollView, StatusBar } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { Feather } from '@expo/vector-icons';
+import { AntDesign, Feather } from '@expo/vector-icons';
 import * as Haptics from 'expo-haptics';
+import { cssInterop } from 'nativewind';
 
 export type Option = {
   id: string;
@@ -17,6 +18,20 @@ type Props = {
   onNext: (selectedIds: string[]) => void;
   onBack: () => void;
 };
+
+cssInterop(Feather, {
+  className: {
+    target: 'style',
+    nativeStyleToProp: { color: true }
+  },
+});
+
+cssInterop(AntDesign, {
+  className: {
+    target: 'style',
+    nativeStyleToProp: { color: true }
+  },
+});
 
 export default function MultipleChoiceTemplate({
   currentStep,
@@ -54,14 +69,14 @@ export default function MultipleChoiceTemplate({
 
   return (
     <SafeAreaView className="flex-1 bg-neutral px-lg">
-      
+
       {/* HEADER */}
       <View className="flex-row items-center justify-between mt-sm mb-lg">
         <Pressable
           onPress={onBack}
           className="w-12 h-12 bg-surface rounded-full items-center justify-center active:scale-90 active:opacity-80 transition-all"
         >
-          <Feather name="chevron-left" size={24} color="var(--color-tertiary)" />
+          <Feather name="chevron-left" size={24} className="text-tertiary" />
         </Pressable>
         <Text className="text-body-large text-on-tertiary font-bold tracking-widest">
           {currentStep} / {totalSteps}
@@ -96,8 +111,8 @@ export default function MultipleChoiceTemplate({
               key={option.id}
               onPress={() => toggleOption(option.id)}
               className={`card-surface flex-row justify-between items-center transition-all ${isSelected
-                  ? 'border border-primary bg-primary/5' // Destaca a opção selecionada com uma borda azul e fundo super claro
-                  : 'border border-transparent'
+                ? 'border border-primary bg-primary/5' // Destaca a opção selecionada com uma borda azul e fundo super claro
+                : 'border border-transparent'
                 }`}
             >
               <Text className={`text-body-large ${isSelected ? 'text-primary font-bold' : 'text-on-tertiary'}`}>
@@ -107,7 +122,7 @@ export default function MultipleChoiceTemplate({
               {/* Checkbox visual */}
               <View className={`w-6 h-6 rounded-md border items-center justify-center transition-all ${isSelected ? 'bg-primary border-primary' : 'border-border bg-neutral'
                 }`}>
-                {isSelected && <Feather name="check" size={16} color="white" />}
+                {isSelected && <Feather name="check" size={16} className="color-on-tertiary" />}
               </View>
             </Pressable>
           );

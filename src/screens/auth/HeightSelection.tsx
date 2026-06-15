@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { View, Text, Pressable, useColorScheme } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { Feather } from '@expo/vector-icons';
+import { AntDesign, Feather } from '@expo/vector-icons';
 import WheelPicker from 'react-native-wheel-picker-expo';
 import * as Haptics from 'expo-haptics';
+import { cssInterop } from 'nativewind';
 
 // 1. Geração das opções para Centímetros
 const CM_MAIN_OPTIONS = Array.from({ length: 151 }, (_, i) => ({ label: `${i + 100}`, value: i + 100 })); // 100 a 250
@@ -13,12 +14,26 @@ const CM_DECIMAL_OPTIONS = Array.from({ length: 10 }, (_, i) => ({ label: `${i}`
 const FT_MAIN_OPTIONS = Array.from({ length: 6 }, (_, i) => ({ label: `${i + 3}`, value: i + 3 })); // 3 a 8 pés
 const FT_INCHES_OPTIONS = Array.from({ length: 12 }, (_, i) => ({ label: `${i}`, value: i })); // 0 a 11 polegadas
 
-type Props = { 
-  onNext: (heightInCm: number) => void; 
-  onBack: () => void; 
-  currentStep: number; 
-  totalSteps: number; 
+type Props = {
+  onNext: (heightInCm: number) => void;
+  onBack: () => void;
+  currentStep: number;
+  totalSteps: number;
 };
+
+cssInterop(Feather, {
+  className: {
+    target: 'style',
+    nativeStyleToProp: { color: true }
+  },
+});
+
+cssInterop(AntDesign, {
+  className: {
+    target: 'style',
+    nativeStyleToProp: { color: true }
+  },
+});
 
 export default function HeightSelection({ onNext, onBack, currentStep, totalSteps }: Props) {
   const [unit, setUnit] = useState<'CM' | 'FT'>('CM');
@@ -43,14 +58,14 @@ export default function HeightSelection({ onNext, onBack, currentStep, totalStep
 
   return (
     <SafeAreaView className="flex-1 bg-neutral px-lg">
-      
+
       {/* HEADER */}
       <View className="flex-row items-center justify-between mt-sm mb-lg">
         <Pressable
           onPress={onBack}
           className="w-12 h-12 bg-surface rounded-full items-center justify-center active:scale-90 active:opacity-80 transition-all"
         >
-          <Feather name="chevron-left" size={24} color="var(--color-tertiary)" />
+          <Feather name="chevron-left" size={24} className="text-tertiary" />
         </Pressable>
         <Text className="text-body-large text-on-tertiary font-bold tracking-widest">
           {currentStep} / {totalSteps}
@@ -65,7 +80,7 @@ export default function HeightSelection({ onNext, onBack, currentStep, totalStep
 
       {/* SELETOR DE UNIDADE */}
       <View className="flex-row bg-surface rounded-full p-1 mx-auto w-64 mb-xl mt-sm">
-        <Pressable 
+        <Pressable
           onPress={() => {
             setUnit('CM');
             Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
@@ -74,8 +89,8 @@ export default function HeightSelection({ onNext, onBack, currentStep, totalStep
         >
           <Text className={`font-bold tracking-widest ${unit === 'CM' ? 'text-on-tertiary' : 'text-on-tertiary/50'}`}>CM</Text>
         </Pressable>
-        
-        <Pressable 
+
+        <Pressable
           onPress={() => {
             setUnit('FT');
             Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
@@ -98,13 +113,13 @@ export default function HeightSelection({ onNext, onBack, currentStep, totalStep
 
       {/* A ROLETA DUPLA */}
       <View className="flex-1 items-center justify-center w-full relative">
-        
+
         {/* --- CONTAINER DAS ROLETAS DE CM --- */}
         <View className="flex-row w-full justify-between px-10" style={{ display: unit === 'CM' ? 'flex' : 'none' }}>
           <View className="flex-1">
             <WheelPicker
               // A MÁGICA 2: O key amarrado ao colorScheme força o recarregamento instantâneo
-              key={`cm-main-${colorScheme}`} 
+              key={`cm-main-${colorScheme}`}
               initialSelectedIndex={currentCmMainIndex}
               items={CM_MAIN_OPTIONS}
               onChange={({ item }) => {
@@ -199,15 +214,15 @@ export default function HeightSelection({ onNext, onBack, currentStep, totalStep
         </View>
 
         {/* A BARRA DE SELEÇÃO INVISÍVEL AO TOQUE! */}
-        <View 
-          className="absolute w-full bg-black/5 dark:bg-white/10" 
-          style={{ height: 50, borderRadius: 14 }} 
+        <View
+          className="absolute w-full bg-black/5 dark:bg-white/10"
+          style={{ height: 50, borderRadius: 14 }}
           pointerEvents="none"
         />
 
         {/* Separador Visual (Vírgula aparece apenas no CM) */}
-        <Text 
-          className="absolute text-on-tertiary text-xl font-bold" 
+        <Text
+          className="absolute text-on-tertiary text-xl font-bold"
           style={{ zIndex: 10, top: '50%', marginTop: -14, display: unit === 'CM' ? 'flex' : 'none' }}
           pointerEvents="none"
         >
@@ -217,7 +232,7 @@ export default function HeightSelection({ onNext, onBack, currentStep, totalStep
       </View>
 
       {/* BOTÃO DE PRÓXIMO */}
-      <Pressable 
+      <Pressable
         className="btn-primary mb-xl mt-auto"
         onPress={() => {
           let finalHeightCm = 0;

@@ -1,17 +1,32 @@
 import React, { useState, useMemo } from 'react';
 import { View, Text, Pressable, useColorScheme } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { Feather } from '@expo/vector-icons';
+import { AntDesign, Feather } from '@expo/vector-icons';
 import { RulerPicker } from 'react-native-ruler-picker';
 import * as Haptics from 'expo-haptics';
+import { cssInterop } from 'nativewind';
 
-type Props = { 
-  onNext: (w: number) => void; 
-  onBack: () => void; 
-  currentStep: number; 
-  totalSteps: number; 
-  heightInMeters: number; 
+type Props = {
+  onNext: (w: number) => void;
+  onBack: () => void;
+  currentStep: number;
+  totalSteps: number;
+  heightInMeters: number;
 };
+
+cssInterop(Feather, {
+  className: {
+    target: 'style',
+    nativeStyleToProp: { color: true }
+  },
+});
+
+cssInterop(AntDesign, {
+  className: {
+    target: 'style',
+    nativeStyleToProp: { color: true }
+  },
+});
 
 export default function WeightSelection({ onNext, onBack, currentStep, totalSteps, heightInMeters }: Props) {
   const [unit, setUnit] = useState<'KG' | 'LB'>('KG');
@@ -25,7 +40,7 @@ export default function WeightSelection({ onNext, onBack, currentStep, totalStep
   const isDark = colorScheme === 'dark';
 
   // 2. Definimos as cores dinâmicas para os tracinhos da régua
-  const shortStepColor = isDark ? '#1e293b' : '#e4e4e4'; 
+  const shortStepColor = isDark ? '#1e293b' : '#e4e4e4';
   const longStepColor = isDark ? '#64748b' : '#A0A0A0';
 
   const imc = useMemo(() => {
@@ -35,7 +50,7 @@ export default function WeightSelection({ onNext, onBack, currentStep, totalStep
   const toggleUnit = (newUnit: 'KG' | 'LB') => {
     if (newUnit === unit) return;
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-    
+
     setShowRuler(false);
 
     if (newUnit === 'LB') {
@@ -52,14 +67,14 @@ export default function WeightSelection({ onNext, onBack, currentStep, totalStep
 
   return (
     <SafeAreaView className="flex-1 bg-neutral px-lg">
-      
+
       {/* HEADER */}
       <View className="flex-row items-center justify-between mt-sm mb-lg">
         <Pressable
           onPress={onBack}
           className="w-12 h-12 bg-surface rounded-full items-center justify-center active:scale-90 active:opacity-80 transition-all"
         >
-          <Feather name="chevron-left" size={24} color="var(--color-tertiary)" />
+          <Feather name="chevron-left" size={24} className="text-tertiary" />
         </Pressable>
         <Text className="text-body-large text-on-tertiary font-bold tracking-widest">
           {currentStep} / {totalSteps}
@@ -74,14 +89,14 @@ export default function WeightSelection({ onNext, onBack, currentStep, totalStep
 
       {/* SELETOR DE UNIDADE */}
       <View className="flex-row bg-surface rounded-full p-1 mx-auto w-64 mb-xl mt-sm">
-        <Pressable 
+        <Pressable
           onPress={() => toggleUnit('KG')}
           className={`flex-1 py-3 items-center rounded-full transition-all ${unit === 'KG' ? 'bg-neutral shadow-sm' : ''}`}
         >
           <Text className={`font-bold tracking-widest ${unit === 'KG' ? 'text-on-tertiary' : 'text-on-tertiary/50'}`}>KG</Text>
         </Pressable>
-        
-        <Pressable 
+
+        <Pressable
           onPress={() => toggleUnit('LB')}
           className={`flex-1 py-3 items-center rounded-full transition-all ${unit === 'LB' ? 'bg-neutral shadow-sm' : ''}`}
         >
@@ -101,15 +116,15 @@ export default function WeightSelection({ onNext, onBack, currentStep, totalStep
 
       {/* CONTAINER DAS RÉGUAS */}
       <View className="items-center mt-xl justify-center mb-xl w-full" style={{ height: 120 }}>
-        
+
         {showRuler && (
           unit === 'KG' ? (
             <RulerPicker
               // 1. Multiplicamos os limites por 10 (30 vira 300, 250 vira 2500)
-              min={300} 
-              max={2500} 
+              min={300}
+              max={2500}
               step={1} // Passos inteiros, adeus erro de precisão!
-              fractionDigits={0} 
+              fractionDigits={0}
               // 2. Multiplicamos o valor inicial por 10
               initialValue={Math.round(weightKg * 10)}
               onValueChange={(number) => {
@@ -118,35 +133,35 @@ export default function WeightSelection({ onNext, onBack, currentStep, totalStep
                 setWeightKg(numVal);
                 Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
               }}
-              valueTextStyle={{ color: 'transparent', fontSize: 1}} 
-              unitTextStyle={{ color: 'transparent', fontSize: 1}}
-              indicatorColor="#034cd5" 
-              shortStepColor={shortStepColor} 
-              longStepColor={longStepColor} 
+              valueTextStyle={{ color: 'transparent', fontSize: 1 }}
+              unitTextStyle={{ color: 'transparent', fontSize: 1 }}
+              indicatorColor="#034cd5"
+              shortStepColor={shortStepColor}
+              longStepColor={longStepColor}
               indicatorHeight={50}
-              height={120} 
+              height={120}
               width={350}
             />
           ) : (
             <RulerPicker
               // Mesma lógica para Libras: Limites e InitialValue multiplicados por 10
-              min={600} 
-              max={4000} 
-              step={1} 
-              fractionDigits={0} 
+              min={600}
+              max={4000}
+              step={1}
+              fractionDigits={0}
               initialValue={Math.round(weightLb * 10)}
               onValueChange={(number) => {
                 const numVal = Number((parseFloat(number) / 10).toFixed(1));
                 setWeightLb(numVal);
                 Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
               }}
-              valueTextStyle={{ color: 'transparent', fontSize: 1}} 
-              unitTextStyle={{ color: 'transparent', fontSize: 1}}
-              indicatorColor="#034cd5" 
-              shortStepColor={shortStepColor} 
-              longStepColor={longStepColor} 
+              valueTextStyle={{ color: 'transparent', fontSize: 1 }}
+              unitTextStyle={{ color: 'transparent', fontSize: 1 }}
+              indicatorColor="#034cd5"
+              shortStepColor={shortStepColor}
+              longStepColor={longStepColor}
               indicatorHeight={50}
-              height={120} 
+              height={120}
               width={350}
             />
           )
@@ -165,9 +180,9 @@ export default function WeightSelection({ onNext, onBack, currentStep, totalStep
       </View>
 
       {/* BOTÃO DE PRÓXIMO */}
-      <Pressable 
+      <Pressable
         className="btn-primary mb-xl"
-        onPress={() => onNext(weightKg)} 
+        onPress={() => onNext(weightKg)}
       >
         <Text className="btn-primary-text font-bold uppercase tracking-wider">
           Próximo

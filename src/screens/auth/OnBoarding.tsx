@@ -1,12 +1,16 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { View, Text, Pressable, ImageBackground, StatusBar } from 'react-native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { RootStackParamList } from '@/routes/routes'; 
+import { RootStackParamList } from '@/routes/routes';
+import AuthBottomSheet from '@/components/AuthBottomSheet';
 
 type Props = NativeStackScreenProps<RootStackParamList, 'OnBoarding'>;
 
 export default function OnBoarding({ navigation, route }: Props) {
   const isLogged = route.params?.isLogged || false;
+
+  // <-- Estado para controlar a visibilidade do Bottom Sheet
+  const [isAuthSheetVisible, setIsAuthSheetVisible] = useState(false);
 
   useEffect(() => {
     if (isLogged) {
@@ -17,14 +21,14 @@ export default function OnBoarding({ navigation, route }: Props) {
   return (
     <>
       {/* Configuração da Status Bar para fundos escuros */}
-      <StatusBar 
-        barStyle="light-content" 
-        translucent 
-        backgroundColor="transparent" 
+      <StatusBar
+        barStyle="light-content"
+        translucent
+        backgroundColor="transparent"
       />
 
       <ImageBackground
-        source={{ uri: 'https://i.pinimg.com/736x/d5/7f/81/d57f817acc21517ddda14b48c62530a5.jpg' }} 
+        source={{ uri: 'https://i.pinimg.com/736x/d5/7f/81/d57f817acc21517ddda14b48c62530a5.jpg' }}
         className="flex-1"
         resizeMode="cover"
       >
@@ -41,11 +45,11 @@ export default function OnBoarding({ navigation, route }: Props) {
           </Text>
 
           <View className="gap-md w-full mb-md">
-            
+
             {/* BOTÃO COMEÇAR */}
             <Pressable
               className="btn-primary w-full"
-              onPress={() => navigation.navigate('Survey')} 
+              onPress={() => navigation.navigate('Survey')}
             >
               <Text className="btn-primary-text font-bold uppercase tracking-wider">Começar</Text>
             </Pressable>
@@ -53,7 +57,10 @@ export default function OnBoarding({ navigation, route }: Props) {
             {/* BOTÃO FANTASMA - Texto também travado em branco */}
             <Pressable
               className="btn-ghost w-full"
-              onPress={() => console.log('Ir para tela de Login')}
+              onPress={() => {
+                console.log('Botão clicado! Estado atual antes de mudar:', isAuthSheetVisible);
+                setIsAuthSheetVisible(true);
+              }}
             >
               <Text className="btn-ghost-text text-white font-bold uppercase tracking-wider">
                 Eu já tenho uma conta
@@ -64,6 +71,12 @@ export default function OnBoarding({ navigation, route }: Props) {
 
         </View>
       </ImageBackground>
+
+      {/* <-- O Bottom Sheet fica aqui embaixo, fora da ImageBackground mas dentro do Fragment */}
+      <AuthBottomSheet
+        visible={isAuthSheetVisible}
+        onClose={() => setIsAuthSheetVisible(false)}
+      />
     </>
   );
 }

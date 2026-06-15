@@ -2,14 +2,20 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url('https://fonts.googleapis.com/css2?family=Elms+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+
 /* 
     ========================================
     1. DESIGN TOKENS (Variáveis Globais)
     ========================================
 */
 @layer base {
+
   /* TEMA CLARO (Padrão) */
   :root {
+
+    font-family: "Elms Sans", sans-serif;
+
     /* Colors */
     --color-primary: #034cd5;
     --color-secondary: #f4fbff;
@@ -40,15 +46,20 @@
   @media (prefers-color-scheme: dark) {
     :root {
       /* O Primary fica levemente mais claro para dar contraste legível no fundo escuro */
-      --color-primary: #3a7cff; 
-      --color-secondary: #001a33; 
-      --color-tertiary: #dfba00; /* Amarelo se mantém bem no claro e no escuro */
-      
+      --color-primary: #3a7cff;
+      --color-secondary: #001a33;
+      --color-tertiary: #dfba00;
+      /* Amarelo se mantém bem no claro e no escuro */
+
       /* Invertemos os fundos e os textos */
-      --color-neutral: #000713; /* Fundo geral vira quase preto */
-      --color-surface: #111a27; /* Fundo dos cards fica um tom sutilmente mais claro que o neutral */
-      --color-on-tertiary: #fcfcfc; /* Textos viram quase branco */
-      --color-border: #1e293b; /* Borda sutil e escura */
+      --color-neutral: #000713;
+      /* Fundo geral vira quase preto */
+      --color-surface: #111a27;
+      /* Fundo dos cards fica um tom sutilmente mais claro que o neutral */
+      --color-on-tertiary: #fcfcfc;
+      /* Textos viram quase branco */
+      --color-border: #1e293b;
+      /* Borda sutil e escura */
     }
   }
 }
@@ -70,6 +81,7 @@
     /* Efeito de clique: diminui 5% (scale-95), escurece/aplica opacidade, transição suave */
     @apply active:scale-95 active:opacity-80 transition-all duration-150 ease-in-out;
   }
+
   .btn-primary-text {
     color: var(--color-neutral);
     font-size: var(--text-label-large);
@@ -84,6 +96,7 @@
     justify-content: center;
     @apply active:scale-95 active:opacity-70 transition-all duration-150 ease-in-out;
   }
+
   .btn-secondary-text {
     color: var(--color-primary);
     font-size: var(--text-label-large);
@@ -98,6 +111,7 @@
     justify-content: center;
     @apply active:scale-95 active:opacity-80 transition-all duration-150 ease-in-out;
   }
+
   .btn-tertiary-text {
     color: var(--color-on-tertiary);
     font-size: var(--text-label-large);
@@ -113,6 +127,7 @@
     /* No ghost, além de diminuir, adicionamos um fundo bem sutil ao clicar */
     @apply active:scale-95 active:bg-black/5 transition-all duration-150 ease-in-out;
   }
+
   .btn-ghost-text {
     color: var(--color-primary);
     font-size: var(--text-label-large);
@@ -151,19 +166,22 @@
 
   .card-surface {
     background-color: var(--color-surface);
-    border-radius: var(--radius-md); /* 14px */
+    border-radius: var(--radius-md);
+    /* 14px */
     padding: var(--spacing-md);
   }
 
   .modal-container {
     background-color: var(--color-neutral);
-    border-radius: var(--radius-lg); /* 32px */
+    border-radius: var(--radius-lg);
+    /* 32px */
     padding: var(--spacing-md);
   }
 
   .bottom-sheet {
     background-color: var(--color-neutral);
-    border-radius: var(--radius-lg); /* 32px */
+    border-radius: var(--radius-lg);
+    /* 32px */
     padding: var(--spacing-md);
   }
 }

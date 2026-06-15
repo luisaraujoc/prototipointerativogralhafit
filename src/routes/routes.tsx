@@ -3,9 +3,9 @@ import { View, Text, Pressable } from 'react-native';
 
 // 1. Importações
 import OnBoarding from '@/screens/auth/OnBoarding';
-import SurveyScreen from '@/screens/OnboardingSurvey';
-import Paywall from '@/screens/Paywall';
-import SignUp from '@/screens/SignUp';
+import SurveyScreen from '@/screens/auth/OnboardingSurvey';
+import Paywall from '@/screens/auth/Paywall';
+import SignUp from '@/screens/auth/SignUp';
 
 // 2. Tipagem das Rotas
 export type RootStackParamList = {
