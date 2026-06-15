@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, Pressable, Modal, TextInput, KeyboardAvoidingView, Platform } from 'react-native';
 import { AntDesign, Feather } from '@expo/vector-icons';
+import { useNavigation } from '@react-navigation/native'; // <-- 1. Importação do Hook
 
 interface AuthBottomSheetProps {
   visible: boolean;
@@ -13,6 +14,9 @@ export default function AuthBottomSheet({ visible, onClose }: AuthBottomSheetPro
   const [step, setStep] = useState<Step>('options');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  
+  // 2. Instanciando a navegação
+  const navigation = useNavigation<any>(); 
 
   // Reseta o estado sempre que o modal for fechado
   const handleClose = () => {
@@ -20,6 +24,12 @@ export default function AuthBottomSheet({ visible, onClose }: AuthBottomSheetPro
     setEmail('');
     setPassword('');
     onClose();
+  };
+
+  // 3. Função dedicada para fechar o modal e navegar de forma limpa
+  const handleLogin = () => {
+    handleClose(); 
+    navigation.replace('AppNavigator')
   };
 
   return (
@@ -33,16 +43,11 @@ export default function AuthBottomSheet({ visible, onClose }: AuthBottomSheetPro
         behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
         className="flex-1 justify-end bg-black/60"
       >
-        {/* Usando a sua classe .bottom-sheet do global.css! 
-          Adicionamos rounded-b-none para tirar o arredondamento de baixo 
-          e pb-10 para dar espaço para o detalhe de navegação do iOS/Android.
-        */}
         <View className="bottom-sheet rounded-b-none pb-10 pt-6">
           
           {/* CONTEÚDO 1: OPÇÕES DE LOGIN */}
           {step === 'options' && (
             <View className="min-h-[300px]">
-              {/* Botão Fechar */}
               <Pressable onPress={handleClose} className="self-end mb-sm p-2">
                 <Feather name="x" size={24} className="text-on-tertiary" />
               </Pressable>
@@ -56,13 +61,19 @@ export default function AuthBottomSheet({ visible, onClose }: AuthBottomSheetPro
               </Text>
 
               <View className="gap-md mt-auto">
-                {/* Botão Google - Usando seu btn-secondary */}
-                <Pressable className="btn-tertiary w-full flex-row relative">
+                {/* Botão Google - AGORA COM NAVEGAÇÃO */}
+                <Pressable 
+                  className="btn-tertiary w-full flex-row relative"
+                  onPress={() => {
+                    console.log('Login com Google acionado!');
+                    handleLogin();
+                  }}
+                >
                   <AntDesign name="google" size={24} className="text-neutral absolute left-6" />
                   <Text className="btn-tertiary-text font-bold uppercase tracking-wider">Entrar com o Google</Text>
                 </Pressable>
 
-                {/* Botão Email - Usando seu btn-primary */}
+                {/* Botão Email - Muda apenas o step do Bottom Sheet */}
                 <Pressable 
                   onPress={() => setStep('email_form')}
                   className="btn-primary w-full flex-row relative"
@@ -76,8 +87,7 @@ export default function AuthBottomSheet({ visible, onClose }: AuthBottomSheetPro
 
           {/* CONTEÚDO 2: FORMULÁRIO DE EMAIL E SENHA */}
           {step === 'email_form' && (
-            <View className="min-h-[400px]"> {/* Altura maior para não cortar os inputs! */}
-              {/* Botão Voltar */}
+            <View className="min-h-[400px]">
               <Pressable 
                 onPress={() => setStep('options')} 
                 className="flex-row items-center mb-lg py-2"
@@ -120,9 +130,13 @@ export default function AuthBottomSheet({ visible, onClose }: AuthBottomSheetPro
                 </View>
               </View>
 
+              {/* Botão Continuar E-mail - AGORA COM NAVEGAÇÃO */}
               <Pressable 
                 className="btn-primary w-full mt-auto"
-                onPress={() => console.log('Fazendo login com:', email, password)}
+                onPress={() => {
+                  console.log('Fazendo login com:', email, password);
+                  handleLogin();
+                }}
               >
                 <Text className="btn-primary-text font-bold uppercase tracking-wider">Continuar</Text>
               </Pressable>

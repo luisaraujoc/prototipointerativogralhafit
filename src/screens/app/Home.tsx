@@ -2,14 +2,30 @@ import React from 'react';
 import { View, Text, Pressable, ScrollView, StatusBar } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Feather } from '@expo/vector-icons';
-import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { RootStackParamList } from '@/routes/routes';
+import { cssInterop } from 'nativewind';
 
-type Props = NativeStackScreenProps<RootStackParamList, 'Home'>;
+// Novos imports para corrigir a tipagem aninhada
+import { BottomTabScreenProps } from '@react-navigation/bottom-tabs';
+import { CompositeScreenProps } from '@react-navigation/native';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
+
+import { AppTabParamList } from '@/screens/app/AppNavigator';
+import { RootStackParamList } from '@/routes/routes'; 
+
+// Mágica do TypeScript: Junta as rotas do Tab com as rotas do Stack!
+type Props = CompositeScreenProps<
+  BottomTabScreenProps<AppTabParamList, 'Home'>,
+  NativeStackScreenProps<RootStackParamList>
+>;
+
+cssInterop(Feather, {
+  className: {
+    target: 'style',
+    nativeStyleToProp: { color: true }
+  },
+});
 
 export default function Home({ navigation }: Props) {
-  // Simulação de estado: se tem treinos cadastrados ou não.
-  // Você pode alternar para [] para ver apenas o botão de adicionar.
   const treinos = [
     { id: '1', titulo: 'Segunda', stats: '6 exercícios • 48min • 238kcal' }
   ];
@@ -21,7 +37,7 @@ export default function Home({ navigation }: Props) {
       {/* HEADER */}
       <View className="flex-row items-center px-lg pt-12 pb-md">
         <Pressable 
-          className="flex-row items-center bg-surface border border-border/50 rounded-full px-4 py-2 active:opacity-70"
+          className="flex-row items-center bg-surface border border-border rounded-lg py-sm px-md active:opacity-80 transition-all"
           onPress={() => console.log('Abrir Bottom Sheet Personalizado')}
         >
           <Feather name="file-text" size={16} className="text-on-tertiary mr-2 opacity-80" />
@@ -33,40 +49,35 @@ export default function Home({ navigation }: Props) {
       </View>
 
       {/* CORPO / LISTA DE TREINOS */}
-      {/* O contentContainerStyle garante um padding no final para a Navbar flutuante não cobrir o conteúdo */}
-      <ScrollView contentContainerStyle={{ paddingHorizontal: 24, paddingBottom: 120 }}>
+      <ScrollView contentContainerClassName="px-lg pb-[120px]">
         
         {treinos.map((treino) => (
-          <View key={treino.id} className="card-surface mb-md border border-border/30">
-            {/* Topo do Card */}
-            <View className="flex-row justify-between items-start mb-1">
-              <Text className="text-body-large text-on-tertiary font-bold tracking-wide">
+          <View key={treino.id} className="card-surface mb-md border border-border">
+            <View className="flex-row justify-between items-start mb-sm">
+              <Text className="text-body-large text-on-tertiary font-bold">
                 {treino.titulo}
               </Text>
-              <Pressable className="p-1">
+              <Pressable className="p-1 active:opacity-70">
                 <Feather name="more-horizontal" size={20} className="text-on-tertiary opacity-70" />
               </Pressable>
             </View>
             
-            {/* Subtítulo */}
-            <Text className="text-body-medium text-on-tertiary opacity-50 mb-xl">
+            <Text className="text-body-medium text-on-tertiary opacity-60 mb-lg">
               {treino.stats}
             </Text>
 
-            {/* Base do Card: Ícones Musculares e Botão */}
             <View className="flex-row justify-between items-end">
-              <View className="flex-row gap-2">
-                {/* Placeholders para as imagens dos mapas musculares */}
-                <View className="w-10 h-12 bg-neutral rounded-md border border-border/50 items-center justify-center">
+              <View className="flex-row gap-sm">
+                <View className="w-10 h-12 bg-neutral rounded-sm border border-border items-center justify-center">
                   <Feather name="user" size={16} className="text-primary" />
                 </View>
-                <View className="w-10 h-12 bg-neutral rounded-md border border-border/50 items-center justify-center">
+                <View className="w-10 h-12 bg-neutral rounded-sm border border-border items-center justify-center">
                   <Feather name="user" size={16} className="text-primary" />
                 </View>
               </View>
 
-              <Pressable className="bg-neutral px-6 py-3 rounded-full border border-border/50 active:opacity-80">
-                <Text className="text-on-tertiary text-xs font-bold tracking-wider uppercase">
+              <Pressable className="btn-primary px-lg py-sm">
+                <Text className="btn-primary-text font-bold uppercase tracking-wider">
                   Iniciar
                 </Text>
               </Pressable>
@@ -76,44 +87,18 @@ export default function Home({ navigation }: Props) {
 
         {/* BOTÃO ADICIONAR TREINO */}
         <Pressable 
-          className="border border-border/50 rounded-[14px] py-5 items-center justify-center flex-row gap-2 active:bg-surface/50 transition-all"
+          className="border-2 border-border rounded-md py-md items-center justify-center flex-row gap-sm active:bg-surface transition-all"
+          // <-- CORREÇÃO: Função anônima adicionada aqui!
+          onPress={() => navigation.navigate('AddWorkout')} 
         >
           <Feather name="plus" size={18} className="text-on-tertiary opacity-80" />
-          <Text className="text-on-tertiary font-bold tracking-wider text-xs uppercase opacity-90">
+          <Text className="text-label-large text-on-tertiary font-bold tracking-wider uppercase opacity-90">
             Adicionar Treino
           </Text>
         </Pressable>
         
       </ScrollView>
-
-      {/* FLOATING NAVBAR */}
-      <View className="absolute bottom-6 left-6 right-6 bg-surface/95 flex-row justify-around items-center px-2 py-2 rounded-[32px] border border-border/50 shadow-lg">
-        
-        {/* Aba Ativa: Meu Plano */}
-        <Pressable className="bg-neutral/60 flex-col items-center justify-center rounded-[24px] px-6 py-2 w-1/3">
-          <Feather name="share-2" size={20} className="text-on-tertiary mb-1" />
-          <Text className="text-on-tertiary text-[10px] font-bold uppercase tracking-widest">
-            Meu Plano
-          </Text>
-        </Pressable>
-
-        {/* Aba Inativa: Progresso */}
-        <Pressable className="flex-col items-center justify-center px-4 py-2 opacity-50 w-1/3">
-          <Feather name="bar-chart-2" size={22} className="text-on-tertiary mb-1" />
-          <Text className="text-on-tertiary text-[10px] font-bold uppercase tracking-widest">
-            Progresso
-          </Text>
-        </Pressable>
-
-        {/* Aba Inativa: Perfil */}
-        <Pressable className="flex-col items-center justify-center px-4 py-2 opacity-50 w-1/3">
-          <Feather name="user" size={22} className="text-on-tertiary mb-1" />
-          <Text className="text-on-tertiary text-[10px] font-bold uppercase tracking-widest">
-            Perfil
-          </Text>
-        </Pressable>
-
-      </View>
+      
     </SafeAreaView>
   );
 }

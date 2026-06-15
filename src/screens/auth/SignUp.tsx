@@ -78,7 +78,7 @@ export default function SignUp({ navigation }: any) {
             onPress={() => {
               Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
               console.log('Ir para fluxo de E-mail');
-              // navigation.navigate('EmailLogin');
+              navigation.replace('AppNavigator')
             }}
             className="flex-row items-center justify-center py-4 rounded-xl bg-primary active:scale-95 active:opacity-80 transition-all"
           >

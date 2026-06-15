@@ -14,7 +14,7 @@ export default function OnBoarding({ navigation, route }: Props) {
 
   useEffect(() => {
     if (isLogged) {
-      navigation.replace('Home');
+      navigation.replace('AppNavigator');
     }
   }, [isLogged, navigation]);
 
